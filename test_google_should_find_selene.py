@@ -4,12 +4,12 @@ from selene import browser, be, have
 def test_find_selene(open_browser_google):
 
     browser.element('[name="q"]').should(be.blank).type('yashaka/selene').press_enter()
-    browser.element('[id="search"]').should(have.text('Selene - User-oriented Web UI browser tests in Python'))
+    browser.element('#search').should(have.text('Selene - User-oriented Web UI browser tests in Python'))
 
 def test_words_not_found_(open_browser_google):
 
-    browser.element('[name="q"]').should(be.blank).type('12345').press_enter()
-    browser.element('[id="search"]').should(have.no.text('Selene - User-oriented Web UI browser tests in Python'))
+    browser.element('[name="q"]').should(be.blank).type('12345!@#$%^&(оысриьлслыламитьм').press_enter()
+    browser.element('#result-stats').should(have.text('Результатов: примерно 0'))
 
 def test_fill_text_box(open_browser_demoqa):
 
