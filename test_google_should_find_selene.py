@@ -1,15 +1,17 @@
-import time
-
 from selene import browser, be, have
 
 
-def test_find_selene():
-    browser.open('https://google.com')
+def test_find_selene(open_browser_google):
+
     browser.element('[name="q"]').should(be.blank).type('yashaka/selene').press_enter()
     browser.element('[id="search"]').should(have.text('Selene - User-oriented Web UI browser tests in Python'))
 
-def test_fill_text_box():
-    browser.open('https://demoqa.com/text-box')
+def test_words_not_found_(open_browser_google):
+
+    browser.element('[name="q"]').should(be.blank).type('12345').press_enter()
+    browser.element('[id="search"]').should(have.no.text('Selene - User-oriented Web UI browser tests in Python'))
+
+def test_fill_text_box(open_browser_demoqa):
 
     browser.element('#userName-wrapper #userName').should(be.blank).type('Petr').press_enter()
     browser.element('#userEmail-wrapper #userEmail').should(be.blank).type('Petr@mail.ru').press_enter()
