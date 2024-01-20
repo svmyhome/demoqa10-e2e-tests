@@ -23,7 +23,7 @@ def test_rectangle():
     a = 10
     b = 20
     # TODO сосчитайте периметр
-    perimeter = a * 2 + b * 2
+    perimeter = 2 * (a + b)
 
     assert perimeter == 60
 
@@ -55,9 +55,7 @@ def test_random_list():
     Создайте список из 10 случайных чисел от 1 до 100 (включая обе границы) и отсортируйте его по возрастанию.
     """
     # TODO создайте список
-    l = [random.randint(0, 101), random.randint(0, 101), random.randint(0, 101), random.randint(0, 101),
-         random.randint(0, 101), random.randint(0, 101), random.randint(0, 101), random.randint(0, 101),
-         random.randint(0, 101), random.randint(0, 101)]
+    l = [random.randint(1, 101) for _ in range(10)]
 
     l.sort()
 
