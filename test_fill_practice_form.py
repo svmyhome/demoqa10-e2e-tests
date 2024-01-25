@@ -1,20 +1,54 @@
-# https://demoqa.com/automation-practice-form
 from selene import browser, be, have
-import pytest
 
 
-# def test_fill_practice_form():
-#     browser.open('https://demoqa.com/automation-practice-form')
-#
-#     browser.element('#firstName').should(be.blank).type('Ivan')
-#     browser.element('#lastName').should(be.blank).type('Petrov')
-#     browser.element('#userEmail').should(be.blank).type('qaz@mail.ru')
-#     # browser.element('#genterWrapper [name=gender]').should(have.exact_text('Male')).click()
-#     # browser.element('#genterWrapper [name=gender]').all(have.exact_text('Male')).click()
-#     browser.element('#userNumber').should(be.blank).type('123456789')
-#     # browser.element('#userNumber').should(be.blank).type('123456789')
-#     # browser.element('#userNumber').should(be.blank).type('123456789')
-#     browser.element('#currentAddress').should(be.blank).type('1234 casc csdc 56789')
+def test_fill_practice_form(browser_management):
+    browser.open('/automation-practice-form')
 
-def test_firt():
-    browser.open('https://dzen.ru/?yredirect=true')
+    browser.element('#firstName').should(be.blank).type('Ivan')
+    browser.element('#lastName').should(be.blank).type('Petrov')
+    browser.element('#userEmail').should(be.blank).type('qaz@mail.ru')
+
+    browser.element('[for=gender-radio-1]').click()
+
+    browser.element('#userNumber').should(be.blank).type('0123456789')
+
+    browser.element('#dateOfBirthInput').click()
+    browser.element(".react-datepicker__year-select").click()
+    browser.element("[value='2019']").click()
+    browser.element(".react-datepicker__month-select").click()
+    browser.element("[value='7']").click()
+    browser.element(".react-datepicker__day--001[tabindex='-1']").click()
+
+    browser.element("#subjectsContainer").click().element('#subjectsInput').type('p')
+
+    browser.element("#react-select-2-option-0").click()
+    browser.element("[for='hobbies-checkbox-1']").click()
+    browser.element("[for='hobbies-checkbox-2']").click()
+    browser.element("[for='hobbies-checkbox-3']").click()
+
+    browser.element('#uploadPicture').type(
+        '/home/vladimir/Downloads/Repository/PetProjects/Python/demoqa10-e2e-tests/README.md'
+    )
+
+    browser.element('#currentAddress').should(be.blank).type('1234 casc csdc 56789')
+
+    browser.element('#state').click()
+    browser.element('#react-select-3-option-2').click()
+    browser.element('#city').click()
+    browser.element('#react-select-4-option-0').click()
+    browser.element('#submit').click()
+
+    browser.all('.table-responsive tbody>tr').should(
+        have.exact_texts(
+            'Student Name Ivan Petrov',
+            'Student Email qaz@mail.ru',
+            'Gender Male',
+            'Mobile 0123456789',
+            'Date of Birth 01 August,2019',
+            'Subjects Physics',
+            'Hobbies Sports, Reading, Music',
+            'Picture README.md',
+            'Address 1234 casc csdc 56789',
+            'State and City Haryana Karnal',
+        )
+    )
