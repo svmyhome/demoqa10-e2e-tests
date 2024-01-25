@@ -1,3 +1,5 @@
+import os
+
 from selene import browser, be, have
 
 
@@ -26,9 +28,7 @@ def test_fill_practice_form(browser_management):
     browser.element("[for='hobbies-checkbox-2']").click()
     browser.element("[for='hobbies-checkbox-3']").click()
 
-    browser.element('#uploadPicture').type(
-        '/home/vladimir/Downloads/Repository/PetProjects/Python/demoqa10-e2e-tests/README.md'
-    )
+    browser.element('#uploadPicture').send_keys(os.path.abspath('README.md'))
 
     browser.element('#currentAddress').should(be.blank).type('1234 casc csdc 56789')
 
