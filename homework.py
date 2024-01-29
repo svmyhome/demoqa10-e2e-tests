@@ -77,10 +77,11 @@ def test_find_suitable_user():
 # "Open Browser [Chrome]"
 
 
-def print_function(function_name, *args):
-    name = function_name.replace('_', ' ').title()
-    list_args = ', '.join(args)
-    return f'{name} [{list_args}]'
+def print_function(function_name, *args, **kwargs):
+    name = function_name.__name__.replace('_', ' ').title()
+    args_names = ', '.join([*args, *kwargs.values()])
+    return f'{name} [{args_names}]'
+
 
 def test_readable_function():
     open_browser(browser_name="Chrome")
@@ -89,18 +90,15 @@ def test_readable_function():
 
 
 def open_browser(browser_name):
-    actual_result = None
-    actual_result = print_function(open_browser.__name__, browser_name)
+    actual_result = print_function(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = None
-    actual_result = print_function(go_to_companyname_homepage.__name__, page_url)
+    actual_result = print_function(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
-    actual_result = print_function(find_registration_button_on_login_page.__name__, page_url, button_text)
+    actual_result = print_function(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
