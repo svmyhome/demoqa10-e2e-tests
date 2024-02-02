@@ -1,13 +1,11 @@
 import os
 from xlrd import open_workbook
 
-PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+os.chdir('../resources')
+path = os.getcwd()
 
-# with open(os.path.join(PROJECT_ROOT_PATH, "resources/template.xls"), 'r') as xls:
-#     reader = open_workbook(xls)
-#     print(reader.sheet_names())
 
-reader = open_workbook(os.path.join(PROJECT_ROOT_PATH, "resources/template.xls"))
+reader = open_workbook(os.path.join(path, "template.xls"))
 print(reader.sheets())
 print(reader.sheet_names())
 print(reader.sheet_by_index(1))

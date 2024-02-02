@@ -2,9 +2,9 @@ import os.path
 
 import PyPDF2
 
-PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
-
-with open(os.path.join(PROJECT_ROOT_PATH, "resources/english_grammar_book_for_students.pdf"), 'rb') as pdf:
+os.chdir('../resources')
+path = os.getcwd()
+with open(os.path.join(path, "english_grammar_book_for_students.pdf"), 'rb') as pdf:
     reader = PyPDF2.PdfReader(pdf)
 
     print(reader.pdf_header)
@@ -14,4 +14,4 @@ with open(os.path.join(PROJECT_ROOT_PATH, "resources/english_grammar_book_for_st
     print(reader.metadata)
     print(reader.page_mode)
     print(reader.page_layout)
-    print(os.path.join(PROJECT_ROOT_PATH, "resources/english_grammar_book_for_students.pdf"))
+    print(os.path.join(path, "resources/english_grammar_book_for_students.pdf"))

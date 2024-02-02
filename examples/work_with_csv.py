@@ -1,12 +1,16 @@
 import csv
 import os
 
-# with open(os.path.join(PROJECT_ROOT_PATH, "resources/csv_test.csv")) as f:
-#     reader = csv.reader(f)
-#     for row in reader:
-#         print(row)
-#     print(reader.line_num)
-with open(os.path.join(os.getcwd(), "resources", "csv_test.csv")) as f:
+os.chdir("../resources")
+path = os.getcwd()
+
+with open(os.path.join(path, 'csv_test.csv'), 'r') as f:
     reader = csv.reader(f)
-    reader.__next__()
-    reader.__next__()
+    for row in reader:
+        print(row)
+    print(reader.line_num)
+
+with open(os.path.join(path, 'csv_test.csv'), 'r') as f:
+    reader = csv.reader(f)
+    print(reader.__next__())
+    print(reader.__next__())
