@@ -1,3 +1,7 @@
+# QA.GURU | Python | Автоматизация тестирования 10 поток
+
+[lesson 7: Working with files](https://school.qa.guru/pl/teach/control/lesson/view?id=314614372)
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -16,3 +20,6 @@ setTimeout(()=> { debugger; }, 2000);
 
 ### Python commands
 python3 -m venv .venv - создает виртуальное окружение через коммандную строку source .venv/bin/activate - активирует виртуальное окружение
+
+### Work with files
+
