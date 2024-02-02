@@ -52,7 +52,7 @@ prefs = {
 }
 option.add_experimental_option("prefs", prefs)
 
-driver_binary_path = ChromeDriverManager.install()
+driver_binary_path = ChromeDriverManager().install()
 driver = webdriver.Chrome(service=Service(driver_binary_path), options=option)
 browser.config.driver = driver
 
