@@ -1,104 +1,104 @@
-from datetime import time
+import os
+import zipfile
+from zipfile import ZipFile
+import PyPDF2
+from openpyxl import load_workbook
+from xlrd import open_workbook
+import csv
 
 
-def test_dark_theme_by_time():
-    """
-    Протестируйте правильность переключения темной темы на сайте в зависимости от времени
-    """
-    current_time = time(hour=23)
-    # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
-
-    is_dark_theme = None
-    if current_time >= time(hour=22) or current_time < time(hour=6):
-        is_dark_theme = True
-    assert is_dark_theme is True
+def create_zip(file_archive):
+    path = os.path.join(os.getcwd(), 'resources')
+    list_dir = os.listdir(path)
+    destination = os.path.join(path, file_archive)
+    with ZipFile(destination, 'w', compression=zipfile.ZIP_DEFLATED) as zf:
+        for file_name in list_dir:
+            add_file = os.path.join(path, file_name)
+            zf.write(add_file, os.path.basename(add_file))
 
 
-def test_dark_theme_by_time_and_user_choice():
-    """
-    Протестируйте правильность переключения темной темы на сайте
-    в зависимости от времени и выбора пользователя
-    dark_theme_enabled_by_user = True - Темная тема включена
-    dark_theme_enabled_by_user = False - Темная тема выключена
-    dark_theme_enabled_by_user = None - Пользователь не сделал выбор (используется переключение по времени системы)
-    """
-    current_time = time(hour=16)
-    dark_theme_enabled_by_user = True
-    # TODO переключите темную тему в зависимости от времени суток,
-    #  но учтите что темная тема может быть включена вручную
-
-    is_dark_theme = None
-    if dark_theme_enabled_by_user or current_time >= time(hour=22) or current_time < time(hour=6):
-        is_dark_theme = True
-    assert is_dark_theme is True
+def add_file_to_zip(name_archive, name_file):
+    destination = os.path.join(os.getcwd(), 'resources', name_archive)
+    with ZipFile(destination, 'a', compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.write(name_file)
 
 
-def test_find_suitable_user():
-    """
-    Найдите нужного пользователя по условиям в списке пользователей
-    """
-    users = [
-        {"name": "Oleg", "age": 32},
-        {"name": "Sergey", "age": 24},
-        {"name": "Stanislav", "age": 15},
-        {"name": "Olga", "age": 45},
-        {"name": "Maria", "age": 18},
-    ]
-
-    # TODO найдите пользователя с именем "Olga"
-    suitable_users = None
-    for user in users:
-        if user['name'] == 'Olga':
-            suitable_users = user
-
-    assert suitable_users == {"name": "Olga", "age": 45}
-
-    # TODO найдите всех пользователей младше 20 лет
-    suitable_users = None
-    list_user = list()
-    for user in users:
-        if user['age'] < 20:
-            list_user.append(user)
-    suitable_users = list_user
-    assert suitable_users == [
-        {"name": "Stanislav", "age": 15},
-        {"name": "Maria", "age": 18},
-    ]
+def list_files_to_zip(name_archive):
+    destination = os.path.join(os.getcwd(), 'resources', name_archive)
+    with ZipFile(destination, 'a') as zf:
+        print(zf.namelist())
 
 
-# Сделайте функцию, которая будет печатать
-# читаемое имя переданной ей функции и значений аргументов.
-# Вызовите ее внутри функций, описанных ниже
-# Подсказка: Имя функции можно получить с помощью func.__name__
-# Например, вызов следующей функции должен преобразовать имя функции
-# в более читаемый вариант (заменить символ подчеркивания на пробел,
-# сделать буквы заглавными (или первую букву), затем вывести значения всех аргументов этой функции:
-# >>> open_browser(browser_name="Chrome")
-# "Open Browser [Chrome]"
+def extract_all_files(name_archive):
+    extract_dir = 'extract_dir'
+    destination = os.path.join(os.getcwd(), 'resources', name_archive)
+    with ZipFile(destination) as zf:
+        zf.extractall(extract_dir)
 
 
-def print_function(function_name, *args, **kwargs):
-    name = function_name.__name__.replace('_', ' ').title()
-    args_names = ', '.join([*args, *kwargs.values()])
-    return f'{name} [{args_names}]'
+def extract_file(name_archive, name_file):
+    extract_dir = 'extract_dir_one'
+    destination = os.path.join(os.getcwd(), 'resources', name_archive)
+    with ZipFile(destination) as zf:
+        zf.extract(name_file, extract_dir)
 
 
-def test_readable_function():
-    open_browser(browser_name="Chrome")
-    go_to_companyname_homepage(page_url="https://companyname.com")
-    find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
+create_zip('test1.zip')
+add_file_to_zip('test1.zip', 'README.md')
+list_files_to_zip('test1.zip')
+extract_all_files('test1.zip')
+extract_file('test1.zip', 'README.rst')
 
 
-def open_browser(browser_name):
-    actual_result = print_function(open_browser, browser_name)
-    assert actual_result == "Open Browser [Chrome]"
+def verify_pdf(pdf_file):
+    destination = os.path.join(os.getcwd(), 'resources')
+    with open(os.path.join(destination, pdf_file), 'rb') as pdf:
+        reader = PyPDF2.PdfReader(pdf)
+        text = reader.pages[2].extract_text()
+        assert 'SERIES CONSULTANT' in text
 
 
-def go_to_companyname_homepage(page_url):
-    actual_result = print_function(go_to_companyname_homepage, page_url)
-    assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
+verify_pdf('english_grammar_book_for_students.pdf')
 
 
-def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = print_function(find_registration_button_on_login_page, page_url, button_text)
-    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+def verify_xlsx(xlsx_file):
+    destination = os.path.join(os.getcwd(), 'resources')
+    workbook = load_workbook(os.path.join(destination, xlsx_file))
+    sheet = workbook.active
+    value = sheet.cell(3, 3).value
+    assert 'Введение в компьютерные приложения' in value
+
+
+verify_xlsx('calendare.xlsx')
+
+
+def verify_xls(xls_file):
+    destination = os.path.join(os.getcwd(), 'resources')
+    reader = open_workbook(os.path.join(destination, xls_file))
+    value = reader.sheet_by_index(0).cell_value(4, 1)
+    assert 'Verify the is correct' in value
+
+
+verify_xls('template.xls')
+
+
+def verify_csv(csv_file):
+    destination = os.path.join(os.getcwd(), 'resources')
+    with open(os.path.join(destination, csv_file)) as f:
+        reader = csv.reader(f)
+        value = reader.__next__()
+    assert 'Value 1' in value
+
+
+verify_csv('csv_test.csv')
+
+
+def verify_txt(txt_file):
+    destination = os.path.join(os.getcwd(), 'resources')
+    with open(os.path.join(destination, txt_file)) as txt:
+        reader = txt.read()
+        text = reader
+    assert 'align: center' in text
+
+
+verify_txt('README.rst')
