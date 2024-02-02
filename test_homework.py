@@ -50,7 +50,8 @@ extract_all_files('test1.zip')
 extract_file('test1.zip', 'README.rst')
 
 
-def verify_pdf(pdf_file):
+def test_pdf():
+    pdf_file = 'english_grammar_book_for_students.pdf'
     destination = os.path.join(os.getcwd(), 'resources')
     with open(os.path.join(destination, pdf_file), 'rb') as pdf:
         reader = PyPDF2.PdfReader(pdf)
@@ -58,10 +59,8 @@ def verify_pdf(pdf_file):
         assert 'SERIES CONSULTANT' in text
 
 
-verify_pdf('english_grammar_book_for_students.pdf')
-
-
-def verify_xlsx(xlsx_file):
+def test_xlsx():
+    xlsx_file = 'calendare.xlsx'
     destination = os.path.join(os.getcwd(), 'resources')
     workbook = load_workbook(os.path.join(destination, xlsx_file))
     sheet = workbook.active
@@ -69,20 +68,16 @@ def verify_xlsx(xlsx_file):
     assert 'Введение в компьютерные приложения' in value
 
 
-verify_xlsx('calendare.xlsx')
-
-
-def verify_xls(xls_file):
+def test_xls():
+    xls_file = 'template.xls'
     destination = os.path.join(os.getcwd(), 'resources')
     reader = open_workbook(os.path.join(destination, xls_file))
     value = reader.sheet_by_index(0).cell_value(4, 1)
     assert 'Verify the is correct' in value
 
 
-verify_xls('template.xls')
-
-
-def verify_csv(csv_file):
+def test_csv():
+    csv_file = 'csv_test.csv'
     destination = os.path.join(os.getcwd(), 'resources')
     with open(os.path.join(destination, csv_file)) as f:
         reader = csv.reader(f)
@@ -90,15 +85,10 @@ def verify_csv(csv_file):
     assert 'Value 1' in value
 
 
-verify_csv('csv_test.csv')
-
-
-def verify_txt(txt_file):
+def test_txt():
+    txt_file = 'README.rst'
     destination = os.path.join(os.getcwd(), 'resources')
     with open(os.path.join(destination, txt_file)) as txt:
         reader = txt.read()
         text = reader
     assert 'align: center' in text
-
-
-verify_txt('README.rst')
