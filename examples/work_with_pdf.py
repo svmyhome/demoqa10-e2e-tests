@@ -1,11 +1,10 @@
 import os.path
-
-import PyPDF2
+import pypdf
 
 os.chdir('../resources')
 path = os.getcwd()
 with open(os.path.join(path, "english_grammar_book_for_students.pdf"), 'rb') as pdf:
-    reader = PyPDF2.PdfReader(pdf)
+    reader = pypdf.PdfReader(pdf)
 
     print(reader.pdf_header)
     print(reader.pages)
