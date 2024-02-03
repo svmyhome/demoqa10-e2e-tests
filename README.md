@@ -1,5 +1,5 @@
 # QA.GURU | Python | Автоматизация тестирования 10 поток
-
+[]()
 [lesson 7: Working with files](https://school.qa.guru/pl/teach/control/lesson/view?id=314614372)
 
 ### Hot keys pyCharm
