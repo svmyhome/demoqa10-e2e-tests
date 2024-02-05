@@ -4,7 +4,7 @@ import pytest
 
 @pytest.fixture
 def users():
-    with open('../resources/people.csv') as csv_file:
+    with open('../resources_hw8/people.csv') as csv_file:
         users = list(csv.DictReader(csv_file, delimiter=';'))
     return users
 

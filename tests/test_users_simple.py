@@ -2,7 +2,7 @@ import csv
 
 
 def test_workers_are_adults():
-    with open('../resources/people.csv') as csv_file:
+    with open('../resources_hw8/people.csv') as csv_file:
         users = csv.DictReader(csv_file, delimiter=';')
         print()
         workers = [user for user in users if user['status'] == 'worker']
