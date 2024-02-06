@@ -1,6 +1,9 @@
 # QA.GURU | Python | Автоматизация тестирования 10 поток
+### Table of contents  
 []()
-[lesson 7: Working with files](https://school.qa.guru/pl/teach/control/lesson/view?id=314614372)
+[Lesson 7: Working with files](https://school.qa.guru/pl/teach/control/lesson/view?id=314614372)
+
+[Lesson 8: Python Basics. OOP](https://school.qa.guru/pl/teach/control/lesson/view?id=320830619)
 
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
