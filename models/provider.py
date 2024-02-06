@@ -24,4 +24,10 @@ class CSVUserProvider(UserProvider):
 
 
 class DBUserProvider(UserProvider):
-    pass
+    def get_users(self) -> list[User]:
+        raise NotImplementedError
+
+
+class APIUserProvider(UserProvider):
+    def get_users(self) -> list[User]:
+        raise NotImplementedError
