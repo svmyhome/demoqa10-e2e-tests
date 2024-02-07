@@ -3,12 +3,23 @@
 """
 import pytest
 
-from tests.homework.models import Product
+from tests.homework.models import Product, Cart
 
 
 @pytest.fixture
 def product():
     return Product("book", 100, "This is a book", 1000)
+
+@pytest.fixture
+def cart():
+    book = Product("book", 100, "This is a book", 1000)
+    pen = Product("pen", 5, "This is a pen", 100)
+    eraser = Product("eraser", 2.5, "This is a earaser", 120)
+    cart = Cart()
+    cart.add_product(book)
+    cart.add_product(pen, 10)
+    cart.add_product(eraser, 12)
+    return Cart()
 
 
 class TestProducts:
@@ -46,3 +57,32 @@ class TestCart:
         На некоторые методы у вас может быть несколько тестов.
         Например, негативные тесты, ожидающие ошибку (используйте pytest.raises, чтобы проверить это)
     """
+
+    def test_add_new_product(self):
+        book = Product("book", 100, "This is a book", 1000)
+        pen = Product("pen", 5, "This is a pen", 100)
+        eraser = Product("eraser", 2.5, "This is a earaser", 120)
+        cart = Cart()
+        cart.add_product(book)
+        assert cart.products[book] == book
+        # cart.add_product(pen, 10)
+        # cart.add_product(eraser, 12)
+
+
+    def test_add_same_product(self, cart):
+        ...
+
+    def test_remove_product(self, cart):
+        ...
+
+    def test_claer_cart(self, cart):
+        ...
+
+    def test_get_total_price(self, cart):
+        ...
+
+    def test_buy(self, cart):
+        ...
+
+    def test_buy_more_than_available(self, cart):
+        ...

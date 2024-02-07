@@ -34,6 +34,9 @@ class Product:
     def __hash__(self):
         return hash(self.name + self.description)
 
+    def __repr__(self):
+        return f'{self.name}'
+
 
 class Cart:
     """
@@ -53,7 +56,13 @@ class Cart:
         Метод добавления продукта в корзину.
         Если продукт уже есть в корзине, то увеличиваем количество
         """
-        raise NotImplementedError
+        p1 = product
+        if True:
+            self.products[product] = buy_count
+            print(self.products)
+            return self.products
+        else:
+            raise NotImplementedError
 
     def remove_product(self, product: Product, remove_count=None):
         """
@@ -79,8 +88,19 @@ class Cart:
 
 
 if __name__ == '__main__':
-    s = 'cdsc'
-    if isinstance(s, int) and s > 0:
-        print('True')
-    else:
-        print('False')
+    c1 = Cart()
+    print(c1.__dict__)
+    book = Product("book", 100, "This is a book", 1000)
+    book1 = Product("book", 100, "This is a book", 1000)
+    products1 = {}
+
+    print(products1)
+    products1["cdscsd"] = 1
+    products1["cdscsd1"] = 2
+    products1[book] = 2
+    products1[book1] = 1
+    print(products1)
+    # products1.
+    print(hash(book) == hash(book1))
+    print(book == book1)
+    print()
