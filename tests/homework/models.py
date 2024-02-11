@@ -78,9 +78,8 @@ class Cart:
                 del self.products[product]
             else:
                 self.products[product] -= remove_count
-                # TODO self.clear()
         else:
-            raise ValueError(f'Incorrect count')
+            raise ValueError(f'Wrong quantity')
 
     def clear(self):
         self.products.clear()
@@ -99,6 +98,6 @@ class Cart:
         """
         for product, count in self.products.items():
             if not product.check_quantity(count):
-                raise ValueError(f'Not enougth product')
+                raise ValueError(f'Not enough product')
             product.buy(count)
         self.products.clear()
