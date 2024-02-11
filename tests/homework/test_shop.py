@@ -3,17 +3,7 @@
 """
 import pytest
 
-from tests.homework.models import Product, Cart
-
-
-@pytest.fixture
-def product():
-    return Product("book", 100, "This is a book", 1000)
-
-
-@pytest.fixture
-def empty_cart():
-    return Cart()
+from tests.conftest import product, empty_cart
 
 
 class TestProducts:
@@ -59,14 +49,18 @@ class TestCart:
         assert empty_cart.products == {}, f'The Cart is not empty'
         empty_cart.add_product(product)
         assert product in empty_cart.products
-        assert empty_cart.products[product] == default_quantity, f'Quantity is not equal to the value {default_quantity}'
+        assert (
+            empty_cart.products[product] == default_quantity
+        ), f'Quantity is not equal to the value {default_quantity}'
 
     def test_add_new_product(self, empty_cart, product):
         quantity = 5
         assert empty_cart.products == {}, f'The Cart is not empty'
         empty_cart.add_product(product, quantity)
         assert product in empty_cart.products
-        assert empty_cart.products[product] == quantity, f'Quantity is not equal to the value {quantity}'
+        assert (
+            empty_cart.products[product] == quantity
+        ), f'Quantity is not equal to the value {quantity}'
 
     def test_add_same_product(self, empty_cart, product):
         quantity = 5
@@ -102,7 +96,9 @@ class TestCart:
         empty_cart.add_product(product, quantity)
 
         empty_cart.remove_product(product, divide)
-        assert empty_cart.products == {}, f'Quantity is not equal to the value {quantity - divide}'
+        assert (
+            empty_cart.products == {}
+        ), f'Quantity is not equal to the value {quantity - divide}'
 
     def test_remove_product_none(self, empty_cart, product):
         quantity = 6
@@ -111,7 +107,9 @@ class TestCart:
         empty_cart.add_product(product, quantity)
 
         empty_cart.remove_product(product)
-        assert empty_cart.products == {}, f'Quantity is not equal to the value {quantity}'
+        assert (
+            empty_cart.products == {}
+        ), f'Quantity is not equal to the value {quantity}'
 
     def test_remove_product_value_error(self, empty_cart, product):
         quantity = 6
@@ -133,7 +131,9 @@ class TestCart:
         assert empty_cart.products == {}, f'The Cart is not empty'
         empty_cart.add_product(product, quantity)
         assert product in empty_cart.products
-        assert empty_cart.products[product] == quantity, f'Quantity is not equal to the value {quantity}'
+        assert (
+            empty_cart.products[product] == quantity
+        ), f'Quantity is not equal to the value {quantity}'
         assert (
             empty_cart.get_total_price() == product.price * quantity
         ), f'Quantity is not equal to the value {quantity}'
