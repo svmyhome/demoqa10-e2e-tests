@@ -13,18 +13,10 @@ def product():
 #todo разделить на пустую корзину и корзину с товаром
 @pytest.fixture
 def empty_cart():
-    # book = Product("book", 100, "This is a book", 1000)
-    # pen = Product("pen", 5, "This is a pen", 100)
-    # eraser = Product("eraser", 2.5, "This is a earaser", 120)
-    # cart = Cart()
-    # cart.add_product(book)
-    # cart.add_product(pen, 10)
-    # cart.add_product(eraser, 12)
     return Cart()
-
+@pytest.fixture
 def one_item_in_cart():
     book = Product("book", 100, "This is a book", 1000)
-    # pen = Product("pen", 5, "This is a pen", 100)
     cart = Cart()
     cart.add_product(book, 5)
     # eraser = Product("eraser", 2.5, "This is a earaser", 120)
@@ -54,7 +46,9 @@ class TestProducts:
     @pytest.mark.parametrize("quantity", [1, 1000])
     def test_product_buy(self, product, quantity):
         # TODO напишите проверки на метод buy
-        assert product.buy(quantity) == product.price * quantity
+        total_quantity = product.quantity - quantity
+        product.buy(quantity)
+        assert product.quantity == total_quantity
 
     def test_product_buy_more_than_available(self, product):
         # TODO напишите проверки на метод buy,
@@ -144,11 +138,21 @@ class TestCart:
         empty_cart.clear()
         assert empty_cart.products == {}, f'Count did not equal {quantity}'
 
-    def test_get_total_price(self, empty_cart):
-        ...
+    def test_get_total_price(self, empty_cart, product):
+        quantity = 5
+        assert empty_cart.products == {}, f'Cart did not empy'
+        empty_cart.add_product(product, quantity)
+        assert product in empty_cart.products
+        assert empty_cart.products[product] == quantity, f'Count not equal {quantity}'
+        assert empty_cart.get_total_price() == product.price * quantity, f'Count not equal {quantity}'
 
-    def test_buy(self, empty_cart):
-        ...
-
-    def test_buy_more_than_available(self, empty_cart):
-        ...
+    @pytest.mark.parametrize('quantity', [1, 1000])
+    def test_buy(self, empty_cart, product, quantity):
+        total_quantity = product.quantity - quantity
+        empty_cart.add_product(product, quantity)
+        empty_cart.buy()
+        assert product.quantity == total_quantity
+    def test_buy_more_than_available(self, empty_cart, product):
+        empty_cart.add_product(product, 1001)
+        with pytest.raises(ValueError):
+            empty_cart.buy()

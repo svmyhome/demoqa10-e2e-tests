@@ -31,8 +31,9 @@ class Product:
             Если продуктов не хватает, то выбросите исключение ValueError
         """
         if self.check_quantity(quantity):
-            return quantity * self.price
-        raise ValueError('To much quantity')
+            self.quantity -= quantity
+        else:
+            raise ValueError('To much quantity')
 
     def __hash__(self):
         return hash(self.name + self.description)
@@ -85,7 +86,10 @@ class Cart:
         self.products.clear()
 
     def get_total_price(self) -> float:
-        raise NotImplementedError
+        total_price = 0
+        for product, key in self.products.items():
+            total_price = product.price * key
+        return total_price
 
     def buy(self):
         """
@@ -93,27 +97,8 @@ class Cart:
         Учтите, что товаров может не хватать на складе.
         В этом случае нужно выбросить исключение ValueError
         """
-        raise NotImplementedError
-
-
-# if __name__ == '__main__':
-#     c1 = Cart()
-#     print(c1.__dict__)
-#     book = Product("book", 100, "This is a book", 1000)
-#     book1 = Product("book", 100, "This is a book", 1000)
-#     products1 = {}
-#
-#     print(products1)
-#     products1["cdscsd"] = 1
-#     products1["cdscsd1"] = 2
-#     products1[book] = 2
-#     products1[book1] = 1
-#     print(products1)
-#     # products1.
-#     print(hash(book) == hash(book1))
-#     print(book == book1)
-#     print()
-#     cart = Cart()
-#     cart.add_product(book)
-#     cart.add_product(book1)
-#     print(cart.products)
+        for product, count in self.products.items():
+            if not product.check_quantity(count):
+                raise ValueError(f'Not enougth product')
+            product.buy(count)
+        self.products.clear()
