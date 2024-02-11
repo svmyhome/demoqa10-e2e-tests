@@ -118,7 +118,7 @@ class TestCart:
         divide = 'wrong value'
         assert empty_cart.products == {}, f'The Cart is not empty'
         empty_cart.add_product(product, quantity)
-        with pytest.raises(ValueError, match='Wrong number'):
+        with pytest.raises(ValueError, match='Wrong quantity'):
             empty_cart.remove_product(product, divide)
 
     def test_clear_cart(self, empty_cart, product):

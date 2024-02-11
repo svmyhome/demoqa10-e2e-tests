@@ -73,7 +73,7 @@ class Cart:
         """
         if product in self.products:
             if isinstance(remove_count, str) and remove_count != None:
-                raise ValueError(f'Incorrect count')
+                raise ValueError(f'Wrong quantity')
             elif remove_count == None or remove_count >= self.products[product]:
                 del self.products[product]
             else:
