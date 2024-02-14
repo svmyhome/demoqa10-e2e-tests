@@ -1,4 +1,6 @@
 import csv
+import os
+
 import pytest
 
 from models.user import User, USER_ADULT_AGE, Status
@@ -6,7 +8,8 @@ from models.user import User, USER_ADULT_AGE, Status
 
 @pytest.fixture
 def users() -> list[User]:
-    with open('../resources_hw8/people.csv') as csv_file:
+    test_dir = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(test_dir, '..', 'resources_hw8', 'people.csv')) as csv_file:
         users = list(csv.DictReader(csv_file, delimiter=';'))
     return [
         User(

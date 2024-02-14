@@ -1,4 +1,5 @@
 import csv
+import os
 
 from models.user import User, Status
 
@@ -10,7 +11,8 @@ class UserProvider:
 
 class CSVUserProvider(UserProvider):
     def get_users(self) -> list[User]:
-        with open('../resources_hw8/people.csv') as csv_file:
+        test_dir = os.path.dirname(os.path.abspath(__file__))
+        with open(os.path.join(test_dir, '..', 'resources_hw8', 'people.csv')) as csv_file:
             users = list(csv.DictReader(csv_file, delimiter=';'))
         return [
             User(

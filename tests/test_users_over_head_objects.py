@@ -1,4 +1,3 @@
-import csv
 import pytest
 
 from models.provider import UserProvider, CSVUserProvider, DBUserProvider, APIUserProvider

@@ -1,10 +1,12 @@
 import csv
 import pytest
+import os
 
 
 @pytest.fixture
 def users():
-    with open('../resources_hw8/people.csv') as csv_file:
+    test_dir = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(test_dir, '..', 'resources_hw8', 'people.csv')) as csv_file:
         users = list(csv.DictReader(csv_file, delimiter=';'))
     return users
 

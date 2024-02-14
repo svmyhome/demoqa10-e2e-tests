@@ -1,8 +1,12 @@
 import csv
 
+import os
+
+
 
 def test_workers_are_adults():
-    with open('../resources_hw8/people.csv') as csv_file:
+    test_dir = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(test_dir, '..', 'resources_hw8', 'people.csv')) as csv_file:
         users = csv.DictReader(csv_file, delimiter=';')
         print()
         workers = [user for user in users if user['status'] == 'worker']
