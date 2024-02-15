@@ -1,15 +1,13 @@
 import json
 
+import pytest
 from selene import browser, be, by
 import allure
 from allure import attachment_type
 from allure_commons.types import Severity
 
 
-def test_github_only_selene():
-    browser.config.window_width = 1200
-    browser.open('https://github.com/')
-
+def test_github_only_selene(browser_management):
     browser.element(".search-input-container .input-button").click()
     browser.element("#query-builder-test").click().send_keys(
         'eroshenkoam/allure-example'
@@ -20,17 +18,13 @@ def test_github_only_selene():
     browser.element("#issue_76").should(be.visible)
 
 
-def test_github_allure_steps_lambda():
+def test_github_allure_steps_lambda(browser_management):
     allure.dynamic.tag('web')
     allure.dynamic.severity(Severity.BLOCKER)
     allure.dynamic.label('owner', 'Sarychev Vladimir')
     allure.dynamic.feature('Работа с репозиторием')
     allure.dynamic.story("Авторизованный пользователь может найти задачу")
     allure.dynamic.link("https://github.com", name="Testing")
-
-    with allure.step('Настройка браузера и открытие главной страницы'):
-        browser.config.window_width = 1200
-        browser.open('https://github.com/')
 
     with allure.step('Поиск репозиитория'):
         browser.element(".search-input-container .input-button").click()
@@ -54,19 +48,12 @@ def test_github_allure_steps_lambda():
 @allure.feature('Работа с репозиторием')
 @allure.story('Не авторизованный пользователь может найти задачу')
 @allure.link('https://github.com', name='Testing')
-def test_github_allure_steps_decorator():
+def test_github_allure_steps_decorator(browser_management):
     repo_name = 'eroshenkoam/allure-example'
-    browser_open()
     search_repository(repo_name)
     go_to_repository(repo_name)
     click_issue_tab()
     assert_issue()
-
-
-@allure.step('Настройка браузера и открытие главной страницы')
-def browser_open():
-    browser.config.window_width = 1200
-    browser.open('https://github.com/')
 
 
 @allure.step('Поиск репозиитория')
