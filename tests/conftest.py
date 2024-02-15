@@ -1,3 +1,4 @@
+
 import pytest
 
 from models.models import Product, Cart
@@ -11,3 +12,4 @@ def product():
 @pytest.fixture
 def empty_cart():
     return Cart()
+

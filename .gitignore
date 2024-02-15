@@ -145,7 +145,10 @@ fabric.properties
 modules.xml
 .idea/misc.xml
 *.ipr
-
+### Allure Report ###
+allure-report/
+allure-results/
+allure/
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
