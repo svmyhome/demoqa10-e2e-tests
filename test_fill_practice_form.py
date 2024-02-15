@@ -2,6 +2,10 @@ import os
 
 from selene import browser, be, have, command
 
+YEAR = '2019'
+MONTH = '7'
+DAY = '01'
+
 
 def test_fill_practice_form_without_revision(browser_management):
     browser.open('/automation-practice-form')
@@ -16,10 +20,10 @@ def test_fill_practice_form_without_revision(browser_management):
 
     browser.element('#dateOfBirthInput').click()
     browser.element(".react-datepicker__year-select").click()
-    browser.element("[value='2019']").click()
+    browser.element(f"[value='{YEAR}']").click()
     browser.element(".react-datepicker__month-select").click()
-    browser.element("[value='7']").click()
-    browser.element(".react-datepicker__day--001[tabindex='-1']").click()
+    browser.element(f"[value='{MONTH}']").click()
+    browser.element(f".react-datepicker__day--0{DAY}[tabindex='-1']").click()
 
     browser.element("#subjectsContainer").click().element('#subjectsInput').type('p')
 
@@ -117,17 +121,25 @@ def test_fill_practice_form_with_revision_1(browser_management):
     #     )
     # )
     list_data = [
-            'Student Name', 'Ivan Petrov',
-            'Student Email', 'qaz@mail.ru',
-            'Gender', 'Male',
-            'Mobile', '0123456789',
-            'Date of Birth', '01 August,2019',
-            'Subjects', 'Physics',
-            'Hobbies', 'Sports, Reading, Music',
-            'Picture', 'README.md',
-            'Address', '1234 casc csdc 56789',
-            'State and City', 'Haryana Karnal']
-    browser.element('.table').all('td').should(
-        have.texts(
-        )
-    )
+        'Student Name',
+        'Ivan Petrov',
+        'Student Email',
+        'qaz@mail.ru',
+        'Gender',
+        'Male',
+        'Mobile',
+        '0123456789',
+        'Date of Birth',
+        '01 August,2019',
+        'Subjects',
+        'Physics',
+        'Hobbies',
+        'Sports, Reading, Music',
+        'Picture',
+        'README.md',
+        'Address',
+        '1234 casc csdc 56789',
+        'State and City',
+        'Haryana Karnal',
+    ]
+    browser.element('.table').all('td').should(have.texts())
