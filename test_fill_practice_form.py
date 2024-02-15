@@ -4,6 +4,9 @@ from selene import browser, be, have
 
 
 def test_fill_practice_form(browser_management):
+    year = '2019'
+    month = '7'
+    day = '01'
     browser.open('/automation-practice-form')
 
     browser.element('#firstName').should(be.blank).type('Ivan')
@@ -16,10 +19,10 @@ def test_fill_practice_form(browser_management):
 
     browser.element('#dateOfBirthInput').click()
     browser.element(".react-datepicker__year-select").click()
-    browser.element("[value='2019']").click()
+    browser.element(f"[value='{year}']").click()
     browser.element(".react-datepicker__month-select").click()
-    browser.element("[value='7']").click()
-    browser.element(".react-datepicker__day--001[tabindex='-1']").click()
+    browser.element(f"[value='{month}']").click()
+    browser.element(f".react-datepicker__day--0{day}[tabindex='-1']").click()
 
     browser.element("#subjectsContainer").click().element('#subjectsInput').type('p')
 
