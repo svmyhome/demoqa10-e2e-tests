@@ -10,21 +10,27 @@ class RegistrationPage:
 
     def open_page(self):
         browser.open('/automation-practice-form')
+        return self
 
     def fill_first_name(self, value):
         browser.element('#firstName').should(be.blank).type(value)
+        return self
 
     def fill_last_name(self, value):
         browser.element('#lastName').should(be.blank).type(value)
+        return self
 
     def fill_email(self, value):
         browser.element('#userEmail').should(be.blank).type(value)
+        return self
 
     def gender_choose(self, value):
         browser.all('[for^=gender-radio]').element_by(have.exact_text(value)).click()
+        return self
 
     def fill_mobile(self, value):
         browser.element('#userNumber').should(be.blank).type(value)
+        return self
 
     def fill_date_of_birth(self, year, month, day):
         browser.element('#dateOfBirthInput').click()
@@ -35,6 +41,7 @@ class RegistrationPage:
         browser.element(
             f".react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)"
         ).click()
+        return self
 
     def fill_subjects(self, value):
         browser.element("#subjectsContainer").click().element('#subjectsInput').type(
@@ -43,33 +50,40 @@ class RegistrationPage:
         browser.all("[id^=react-select-2-option]").element_by(
             have.exact_text('Physics')
         ).click()
+        return self
 
     def hobbies_choose(self, *args):
         for value in args:
             browser.all("[for^='hobbies-checkbox']").element_by(
                 have.exact_text(value)
             ).click()
+        return self
 
     def select_picture(self, path):
         browser.element('#uploadPicture').send_keys(os.path.abspath(path))
+        return self
 
     def fill_current_address(self, adress):
         browser.element('#currentAddress').should(be.blank).type(adress)
+        return self
 
     def state_choose(self, value):
         self.state.click()
         browser.all("[id^='react-select-3-option']").element_by(
             have.exact_text(value)
         ).click()
+        return self
 
     def city_choose(self, value):
         self.city.click()
         browser.all('[id^=react-select-4-option]').element_by(
             have.exact_text(value)
         ).click()
+        return self
 
     def submit(self):
         browser.element('#submit').click()
+        return self
 
     def assert_fill_form(
         self,
@@ -98,3 +112,6 @@ class RegistrationPage:
                 state_city,
             )
         )
+
+    def get_form_table_cells(self):
+        return browser.element('.table-responsive').all('td')
