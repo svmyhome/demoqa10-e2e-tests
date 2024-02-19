@@ -2,6 +2,10 @@ from dataclasses import dataclass
 import datetime
 
 
+YEAR = 2019
+MONTH = 8
+DAY = 1
+
 @dataclass
 class User:
     first_name: str
