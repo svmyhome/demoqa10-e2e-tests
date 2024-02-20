@@ -43,7 +43,7 @@ def test_fill_practice_form_with_revision(browser_management):
         have.exact_text('Music')
     ).click()
 
-    browser.element('#uploadPicture').send_keys(os.path.abspath('README.md'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('../README.md'))
 
     browser.element('#currentAddress').should(be.blank).type('1234 casc csdc 56789')
 
@@ -109,7 +109,7 @@ def test_fill_practice_form_with_revision_table(browser_management):
         have.exact_text('Music')
     ).click()
 
-    browser.element('#uploadPicture').send_keys(os.path.abspath('README.md'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('../README.md'))
 
     browser.element('#currentAddress').should(be.blank).type('1234 casc csdc 56789')
 

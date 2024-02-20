@@ -48,7 +48,7 @@ class RegistrationPage:
             'p'
         )
         browser.all("[id^=react-select-2-option]").element_by(
-            have.exact_text('Physics')
+            have.exact_text(value)
         ).click()
         return self
 
@@ -63,8 +63,8 @@ class RegistrationPage:
         browser.element('#uploadPicture').send_keys(os.path.abspath(path))
         return self
 
-    def fill_current_address(self, adress):
-        browser.element('#currentAddress').should(be.blank).type(adress)
+    def fill_current_address(self, address):
+        browser.element('#currentAddress').should(be.blank).type(address)
         return self
 
     def state_choose(self, value):
