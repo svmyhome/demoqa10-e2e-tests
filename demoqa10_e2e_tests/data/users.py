@@ -6,6 +6,7 @@ YEAR = 2019
 MONTH = 8
 DAY = 1
 
+
 @dataclass
 class User:
     first_name: str
@@ -20,3 +21,11 @@ class User:
     address: str
     state: str
     city: str
+
+
+@dataclass
+class SimpleUser:
+    full_name: str
+    email: str
+    current_address: str
+    permanent_address: str

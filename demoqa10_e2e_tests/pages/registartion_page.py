@@ -1,6 +1,6 @@
 import os
 from enum import Enum
-from demoqa10_e2e_tests.data.user import User
+from demoqa10_e2e_tests.data.users import User
 from selene import browser, be, have
 
 

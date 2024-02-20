@@ -1,5 +1,5 @@
 import datetime
-from demoqa10_e2e_tests.data.user import User
+from demoqa10_e2e_tests.data.users import User
 
 from selene import have
 
@@ -25,15 +25,15 @@ def test_fill_practice_form_with_revision_table_hi_level(browser_management):
         'Uttar Pradesh',
         'Lucknow',
     )
-    user_registration = RegistrationPage()
+    full_registration_page = RegistrationPage()
 
-    user_registration.open_page()
+    full_registration_page.open_page()
 
-    user_registration.register(user)
+    full_registration_page.register(user)
 
-    user_registration.submit()
+    full_registration_page.submit()
 
-    user_registration.get_form_table_cells().should(
+    full_registration_page.get_form_table_cells().should(
         have.exact_texts(
             ('Student Name', 'Ivan Petrov'),
             ('Student Email', 'qaz@mail.ru'),
