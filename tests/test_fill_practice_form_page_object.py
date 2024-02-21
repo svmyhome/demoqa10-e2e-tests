@@ -1,5 +1,7 @@
 import datetime
-from demoqa10_e2e_tests.data.user import User
+
+from demoqa10_e2e_tests.data import users
+from demoqa10_e2e_tests.data.users import User
 
 from selene import have
 
@@ -11,7 +13,7 @@ DAY = 1
 
 
 def test_fill_practice_form_with_revision_table_hi_level(browser_management):
-    user = User(
+    worker = User(
         'Ivan',
         'Petrov',
         'qaz@mail.ru',
@@ -25,11 +27,12 @@ def test_fill_practice_form_with_revision_table_hi_level(browser_management):
         'Uttar Pradesh',
         'Lucknow',
     )
+
     user_registration = RegistrationPage()
 
     user_registration.open_page()
 
-    user_registration.register(user)
+    user_registration.register(worker)
 
     user_registration.submit()
 
