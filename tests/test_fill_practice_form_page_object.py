@@ -1,44 +1,52 @@
 import os
 
+import allure
+from allure_commons.types import Severity
 from selene import browser, be, have
 
-from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage
+from demoqa10_e2e_tests.pages.registration_page import RegistrationPage
 
 YEAR = '2019'
 MONTH = '8'
 DAY = '01'
 
 
+@allure.tag('DemoQA', 'Проверка внутри Page object')
+@allure.feature('Registration Form 1')
+@allure.story('Register the user')
+@allure.label('OWNER', 'Vladimir')
+@allure.severity(Severity.BLOCKER)
+@allure.link('https://demoqa.com', name='Practice Form')
 def test_fill_practice_form_with_revision(browser_management):
-    user_registration = RegistrationPage()
+    registration_page = RegistrationPage()
 
-    user_registration.open_page()
+    registration_page.open_page()
 
-    user_registration.fill_first_name('Ivan')
-    user_registration.fill_last_name('Petrov')
-    user_registration.fill_email('qaz@mail.ru')
+    registration_page.fill_first_name('Ivan')
+    registration_page.fill_last_name('Petrov')
+    registration_page.fill_email('qaz@mail.ru')
 
-    user_registration.gender_choose('Male')
+    registration_page.gender_choose('Male')
 
-    user_registration.fill_mobile('0123456789')
+    registration_page.fill_mobile('0123456789')
 
-    user_registration.fill_date_of_birth(YEAR, MONTH, DAY)
+    registration_page.fill_date_of_birth(YEAR, MONTH, DAY)
 
-    user_registration.fill_subjects('Physics')
+    registration_page.fill_subjects('Physics')
 
-    user_registration.hobbies_choose('Sports', 'Reading', 'Music')
+    registration_page.hobbies_choose('Sports', 'Reading', 'Music')
 
-    user_registration.select_picture('../README.md')
+    registration_page.select_picture('robo.png')
 
-    user_registration.fill_current_address('SPB, lenina 10')
+    registration_page.fill_current_address('SPB, lenina 10')
 
-    user_registration.state_choose('Uttar Pradesh')
+    registration_page.state_choose('Uttar Pradesh')
 
-    user_registration.city_choose('Lucknow')
+    registration_page.city_choose('Lucknow')
 
-    user_registration.submit()
+    registration_page.submit()
 
-    user_registration.assert_fill_form(
+    registration_page.assert_fill_form(
         'Student Name Ivan Petrov',
         'Student Email qaz@mail.ru',
         'Gender Male',
@@ -46,38 +54,44 @@ def test_fill_practice_form_with_revision(browser_management):
         'Date of Birth 01 September,2019',
         'Subjects Physics',
         'Hobbies Sports, Reading, Music',
-        'Picture README.md',
+        'Picture robo.png',
         'Address SPB, lenina 10',
         'State and City Uttar Pradesh Lucknow',
     )
+    registration_page.close_submiting_form()
 
-
+@allure.tag('DemoQA', 'Проверка вне Page object')
+@allure.feature('Registration Form 2')
+@allure.story('Register the user')
+@allure.label('OWNER', 'Vladimir')
+@allure.severity(Severity.NORMAL)
+@allure.link('https://demoqa.com', name='Practice Form')
 def test_fill_practice_form_with_revision_table(browser_management):
-    user_registration = RegistrationPage()
+    registration_page = RegistrationPage()
 
-    user_registration.open_page().fill_first_name('Ivan').fill_last_name(
+    registration_page.open_page().fill_first_name('Ivan').fill_last_name(
         'Petrov'
     ).fill_email('qaz@mail.ru')
 
-    user_registration.gender_choose('Male')
+    registration_page.gender_choose('Male')
 
-    user_registration.fill_mobile('0123456789')
+    registration_page.fill_mobile('0123456789')
 
-    user_registration.fill_date_of_birth(YEAR, MONTH, DAY)
+    registration_page.fill_date_of_birth(YEAR, MONTH, DAY)
 
-    user_registration.fill_subjects('Physics')
+    registration_page.fill_subjects('Physics')
 
-    user_registration.hobbies_choose('Sports', 'Reading', 'Music')
+    registration_page.hobbies_choose('Sports', 'Reading', 'Music')
 
-    user_registration.select_picture('../README.md')
+    registration_page.select_picture('robo.png')
 
-    user_registration.fill_current_address('SPB, lenina 10')
+    registration_page.fill_current_address('SPB, lenina 10')
 
-    user_registration.state_choose('Uttar Pradesh').city_choose('Lucknow')
+    registration_page.state_choose('Uttar Pradesh').city_choose('Lucknow')
 
-    user_registration.submit()
+    registration_page.submit()
 
-    user_registration.get_form_table_cells().should(
+    registration_page.get_form_table_cells().should(
         have.exact_texts(
             ('Student Name', 'Ivan Petrov'),
             ('Student Email', 'qaz@mail.ru'),
@@ -86,8 +100,9 @@ def test_fill_practice_form_with_revision_table(browser_management):
             ('Date of Birth', '01 September,2019'),
             ('Subjects', 'Physics'),
             ('Hobbies', 'Sports, Reading, Music'),
-            ('Picture', 'README.md'),
+            ('Picture', 'robo.png'),
             ('Address', 'SPB, lenina 10'),
             ('State and City', 'Uttar Pradesh Lucknow'),
         )
     )
+    registration_page.close_submiting_form()
