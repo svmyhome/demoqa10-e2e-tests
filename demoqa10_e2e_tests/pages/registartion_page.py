@@ -1,6 +1,8 @@
 import os
 from enum import Enum
 
+import allure
+
 from demoqa10_e2e_tests import resource
 from demoqa10_e2e_tests.data.users import User
 from selene import browser, be, have
@@ -23,9 +25,19 @@ class RegistrationPage:
         self.current_address = browser.element('#currentAddress')
         self.state = browser.element('#state')
         self.city = browser.element('#city')
+        self.button_submit = browser.element("#submit")
+        self.close_modal_form = browser.element("#closeLargeModal")
+
+        """
+        self.subjects = browser.element('#subjectsInput')
+        self.hobbies = browser.all("[type=checkbox]")
+        self.subjects = browser.element('#subjectsInput')
+
+        """
 
     def open_page(self):
-        browser.open('/automation-practice-form')
+        with allure.step('Open page'):
+            browser.open('/automation-practice-form')
         return self
 
     def fill_date_of_birth(self, birthday):
@@ -60,32 +72,43 @@ class RegistrationPage:
             ).click()
         return self
 
-    def submit(self):
-        browser.element('#submit').click()
-        return self
-
     def get_form_table_cells(self):
         return browser.element('.table-responsive').all('td')
 
     def register(self, user: User):
-        self.first_name.should(be.blank).type(user.first_name)
-        self.last_name.should(be.blank).type(user.last_name)
-        self.email.should(be.blank).type(user.email)
-        self.gender.element_by(have.exact_text(user.gender)).click()
-        self.mobile.should(be.blank).type(user.mobile)
-        self.fill_date_of_birth(user.date_of_birth)
-        self.fill_subjects(user.subjects)
-        self.hobbies_choose(user.hobbies)
-        self.picture.send_keys(resource.path(user.picture))
-        self.current_address.should(be.blank).type(user.address)
-        self.state.click()
-        browser.all("[id^='react-select-3-option']").element_by(
-            have.exact_text(user.state)
-        ).click()
-
-        self.city.click()
-        browser.all('[id^=react-select-4-option]').element_by(
-            have.exact_text(user.city)
-        ).click()
+        with allure.step('Input first name'):
+            self.first_name.should(be.blank).type(user.first_name)
+        with allure.step('Input last name'):
+            self.last_name.should(be.blank).type(user.last_name)
+        with allure.step('Input email'):
+            self.email.should(be.blank).type(user.email)
+        with allure.step('Select gender'):
+            self.gender.element_by(have.exact_text(user.gender)).click()
+        with allure.step('Input mobile'):
+            self.mobile.should(be.blank).type(user.mobile)
+        with allure.step('Input date of birth'):
+            self.fill_date_of_birth(user.date_of_birth)
+        with allure.step('Select subjects'):
+            self.fill_subjects(user.subjects)
+        with allure.step('Select hobbies'):
+            self.hobbies_choose(user.hobbies)
+        with allure.step('Select picture'):
+            self.picture.send_keys(resource.path(user.picture))
+        with allure.step('Type address'):
+            self.current_address.should(be.blank).type(user.address)
+        with allure.step('Select state'):
+            self.state.click()
+            browser.all("[id^='react-select-3-option']").element_by(
+                have.exact_text(user.state)
+            ).click()
+        with allure.step('Select city'):
+            self.city.click()
+            browser.all('[id^=react-select-4-option]').element_by(
+                have.exact_text(user.city)
+            ).click()
+        with allure.step('Press button submit form'):
+            self.button_submit.submit()
+        # with allure.step('Close modal window'):
+        #     self.close_modal_form.click()
 
         return self

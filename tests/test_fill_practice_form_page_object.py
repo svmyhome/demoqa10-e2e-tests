@@ -34,7 +34,7 @@ def test_fill_practice_form_with_revision_table_hi_level(browser_management):
 
     user_registration.register(worker)
 
-    user_registration.submit()
+    # user_registration.submit()
 
     user_registration.get_form_table_cells().should(
         have.exact_texts(
