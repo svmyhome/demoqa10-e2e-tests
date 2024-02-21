@@ -20,7 +20,7 @@ def test_fill_practice_form_with_revision_table_hi_level(browser_management):
         datetime.date(YEAR, MONTH, DAY),
         ('p', 'Physics'),
         [Hobbies.sport, Hobbies.reading, Hobbies.music],
-        'README.md',
+        'robo.png',
         'SPB, lenina 10',
         'Uttar Pradesh',
         'Lucknow',
@@ -42,7 +42,7 @@ def test_fill_practice_form_with_revision_table_hi_level(browser_management):
             ('Date of Birth', '01 September,2019'),
             ('Subjects', 'Physics'),
             ('Hobbies', 'Sports, Reading, Music'),
-            ('Picture', 'README.md'),
+            ('Picture', 'robo.png'),
             ('Address', 'SPB, lenina 10'),
             ('State and City', 'Uttar Pradesh Lucknow'),
         )

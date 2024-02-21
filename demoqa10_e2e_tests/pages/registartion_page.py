@@ -1,5 +1,7 @@
 import os
 from enum import Enum
+
+from demoqa10_e2e_tests import resource
 from demoqa10_e2e_tests.data.user import User
 from selene import browser, be, have
 
@@ -74,7 +76,7 @@ class RegistrationPage:
         self.fill_date_of_birth(user.date_of_birth)
         self.fill_subjects(user.subjects)
         self.hobbies_choose(user.hobbies)
-        self.picture.send_keys(os.path.abspath(f'../{user.picture}'))
+        self.picture.send_keys(resource.path(user.picture))
         self.current_address.should(be.blank).type(user.address)
         self.state.click()
         browser.all("[id^='react-select-3-option']").element_by(
