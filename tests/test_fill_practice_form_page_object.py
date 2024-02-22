@@ -3,50 +3,34 @@ import datetime
 from demoqa10_e2e_tests.data import users
 from demoqa10_e2e_tests.data.users import User
 
-from selene import have
 
 from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage, Hobbies
-
-YEAR = 2019
-MONTH = 8
-DAY = 1
+from demoqa10_e2e_tests.resource import generate_date_of_birth
 
 
 def test_fill_practice_form_with_revision_table_hi_level(browser_management):
     worker = User(
-        'Ivan',
-        'Petrov',
-        'qaz@mail.ru',
-        'Male',
-        '0123456789',
-        datetime.date(YEAR, MONTH, DAY),
-        ('p', 'Physics'),
-        [Hobbies.sport, Hobbies.reading, Hobbies.music],
-        'robo.png',
-        'SPB, lenina 10',
-        'Uttar Pradesh',
-        'Lucknow',
+        first_name='Ivan',
+        last_name='Petrov',
+        email='qaz@mail.ru',
+        gender='Male',
+        mobile='0123456789',
+        # date_of_birth=generate_date_of_birth(1980, 1, 10),
+        date_of_birth_year='1980',
+        date_of_birth_month='January',
+        date_of_birth_day='10',
+        subjects='Physics',
+        hobbies=[Hobbies.sport.value, Hobbies.reading.value, Hobbies.music.value],
+        picture='robo.png',
+        current_address='SPB, lenina 10',
+        state='Uttar Pradesh',
+        city='Lucknow',
     )
 
-    user_registration = RegistrationPage()
+    registration_page = RegistrationPage()
 
-    user_registration.open_page()
+    registration_page.open_page()
 
-    user_registration.register(worker)
+    registration_page.register(worker)
 
-    # user_registration.submit()
-
-    user_registration.get_form_table_cells().should(
-        have.exact_texts(
-            ('Student Name', 'Ivan Petrov'),
-            ('Student Email', 'qaz@mail.ru'),
-            ('Gender', 'Male'),
-            ('Mobile', '0123456789'),
-            ('Date of Birth', '01 September,2019'),
-            ('Subjects', 'Physics'),
-            ('Hobbies', 'Sports, Reading, Music'),
-            ('Picture', 'robo.png'),
-            ('Address', 'SPB, lenina 10'),
-            ('State and City', 'Uttar Pradesh Lucknow'),
-        )
-    )
+    registration_page.should_have_registered_user_with(worker)

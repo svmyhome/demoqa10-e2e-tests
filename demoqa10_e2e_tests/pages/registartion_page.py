@@ -21,6 +21,7 @@ class RegistrationPage:
         self.email = browser.element('#userEmail')
         self.gender = browser.all('[for^=gender-radio]')
         self.mobile = browser.element('#userNumber')
+        self.subjects = browser.element('#subjectsInput')
         self.picture = browser.element('#uploadPicture')
         self.current_address = browser.element('#currentAddress')
         self.state = browser.element('#state')
@@ -28,52 +29,35 @@ class RegistrationPage:
         self.button_submit = browser.element("#submit")
         self.close_modal_form = browser.element("#closeLargeModal")
 
-        """
-        self.subjects = browser.element('#subjectsInput')
-        self.hobbies = browser.all("[type=checkbox]")
-        self.subjects = browser.element('#subjectsInput')
-
-        """
-
     def open_page(self):
         with allure.step('Open page'):
             browser.open('/automation-practice-form')
         return self
 
-    def fill_date_of_birth(self, birthday):
-        if birthday.day < 10:
-            day = '0' + str(birthday.day)
-        else:
-            day = str(birthday.day)
+    def fill_date_of_birth(self, user: User):
         browser.element('#dateOfBirthInput').click()
-        browser.element(".react-datepicker__year-select").click()
-        browser.element(f"[value='{birthday.year}']").click()
-        browser.element(".react-datepicker__month-select").click()
-        browser.element(f"[value='{birthday.month}']").click()
-        browser.element(
-            f".react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)"
-        ).click()
-        return self
-
-    def fill_subjects(self, subject: tuple):
-        input_value, test_value = subject
-        browser.element("#subjectsContainer").click().element('#subjectsInput').type(
-            input_value
+        browser.element(".react-datepicker__year-select").send_keys(
+            user.date_of_birth_year
         )
-        browser.all("[id^=react-select-2-option]").element_by(
-            have.exact_text(test_value)
-        ).click()
+        browser.element(".react-datepicker__month-select").send_keys(
+            user.date_of_birth_month
+        )
+        browser.element(f".react-datepicker__day--0{user.date_of_birth_day}").click()
         return self
 
     def hobbies_choose(self, hobbies: list):
         for hobby in hobbies:
             browser.all("[for^='hobbies-checkbox']").element_by(
-                have.exact_text(hobby.value)
+                have.exact_text(hobby)
             ).click()
         return self
 
-    def get_form_table_cells(self):
-        return browser.element('.table-responsive').all('td')
+    @allure.step('Select state')
+    def fill_state(self, user: User):
+        browser.element("#state").click()
+        browser.all("[id^=react-select][id*=option]").element_by(
+            have.exact_text(user.state)
+        ).click()
 
     def register(self, user: User):
         with allure.step('Input first name'):
@@ -87,20 +71,16 @@ class RegistrationPage:
         with allure.step('Input mobile'):
             self.mobile.should(be.blank).type(user.mobile)
         with allure.step('Input date of birth'):
-            self.fill_date_of_birth(user.date_of_birth)
+            self.fill_date_of_birth(user)
         with allure.step('Select subjects'):
-            self.fill_subjects(user.subjects)
+            self.subjects.type(user.subjects).press_enter()
         with allure.step('Select hobbies'):
             self.hobbies_choose(user.hobbies)
         with allure.step('Select picture'):
             self.picture.send_keys(resource.path(user.picture))
         with allure.step('Type address'):
-            self.current_address.should(be.blank).type(user.address)
-        with allure.step('Select state'):
-            self.state.click()
-            browser.all("[id^='react-select-3-option']").element_by(
-                have.exact_text(user.state)
-            ).click()
+            self.current_address.should(be.blank).type(user.current_address)
+        self.fill_state(user)
         with allure.step('Select city'):
             self.city.click()
             browser.all('[id^=react-select-4-option]').element_by(
@@ -108,7 +88,21 @@ class RegistrationPage:
             ).click()
         with allure.step('Press button submit form'):
             self.button_submit.submit()
-        # with allure.step('Close modal window'):
-        #     self.close_modal_form.click()
 
         return self
+
+    def should_have_registered_user_with(self, user: User):
+        browser.element(".table").all("td:nth-child(2)").should(
+            have.exact_texts(
+                f"{user.first_name} {user.last_name}",
+                user.email,
+                user.gender,
+                user.mobile,
+                f'{user.date_of_birth_day} {user.date_of_birth_month},{user.date_of_birth_year}',
+                user.subjects,
+                f'{user.hobbies[0]}, {user.hobbies[1]}, {user.hobbies[2]}',
+                user.picture,
+                user.current_address,
+                f'{user.state} {user.city}',
+            )
+        )
