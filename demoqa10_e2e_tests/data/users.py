@@ -14,11 +14,13 @@ class User:
     email: str
     gender: str
     mobile: str
-    date_of_birth: datetime.date
-    subjects: tuple
+    date_of_birth_year: str
+    date_of_birth_month: str
+    date_of_birth_day: str
+    subjects: str
     hobbies: list
     picture: str
-    address: str
+    current_address: str
     state: str
     city: str
 
