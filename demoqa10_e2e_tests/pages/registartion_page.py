@@ -1,17 +1,10 @@
-import os
-from enum import Enum
-
 import allure
 
 from demoqa10_e2e_tests import resource
 from demoqa10_e2e_tests.data.users import User
 from selene import browser, be, have
 
-
-class Hobbies(Enum):
-    sport = 'Sports'
-    reading = 'Reading'
-    music = 'Music'
+from demoqa10_e2e_tests.resource import generate_hobbies
 
 
 class RegistrationPage:
@@ -45,6 +38,7 @@ class RegistrationPage:
         browser.element(f".react-datepicker__day--0{user.date_of_birth_day}").click()
         return self
 
+    @allure.step('Select hobbies')
     def hobbies_choose(self, hobbies: list):
         for hobby in hobbies:
             browser.all("[for^='hobbies-checkbox']").element_by(
@@ -74,8 +68,7 @@ class RegistrationPage:
             self.fill_date_of_birth(user)
         with allure.step('Select subjects'):
             self.subjects.type(user.subjects).press_enter()
-        with allure.step('Select hobbies'):
-            self.hobbies_choose(user.hobbies)
+        self.hobbies_choose(user.hobbies)
         with allure.step('Select picture'):
             self.picture.send_keys(resource.path(user.picture))
         with allure.step('Type address'):
@@ -100,7 +93,8 @@ class RegistrationPage:
                 user.mobile,
                 f'{user.date_of_birth_day} {user.date_of_birth_month},{user.date_of_birth_year}',
                 user.subjects,
-                f'{user.hobbies[0]}, {user.hobbies[1]}, {user.hobbies[2]}',
+                generate_hobbies(user),
+                # f'{user.hobbies[0]}, {user.hobbies[0]}, {user.hobbies[2]}',
                 user.picture,
                 user.current_address,
                 f'{user.state} {user.city}',

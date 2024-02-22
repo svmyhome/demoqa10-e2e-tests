@@ -1,11 +1,6 @@
-import datetime
-
-from demoqa10_e2e_tests.data import users
 from demoqa10_e2e_tests.data.users import User
-
-
-from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage, Hobbies
-from demoqa10_e2e_tests.resource import generate_date_of_birth
+from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage
+from demoqa10_e2e_tests.resource import Hobbies
 
 
 def test_fill_practice_form_with_revision_table_hi_level(browser_management):
@@ -15,7 +10,6 @@ def test_fill_practice_form_with_revision_table_hi_level(browser_management):
         email='qaz@mail.ru',
         gender='Male',
         mobile='0123456789',
-        # date_of_birth=generate_date_of_birth(1980, 1, 10),
         date_of_birth_year='1980',
         date_of_birth_month='January',
         date_of_birth_day='10',
