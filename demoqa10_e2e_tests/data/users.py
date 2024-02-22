@@ -31,3 +31,5 @@ class SimpleUser:
     email: str
     current_address: str
     permanent_address: str
+
+simple_user = SimpleUser('Ivan', 'Ivan@mail.ru', 'SPB, Nevsky 10', 'SPB, Nevsky 10')
