@@ -30,9 +30,6 @@ class TextBoxRegistrationPage:
         self.permanent_address.type(value)
         return self
 
-    def submit(self):
-        self.submit_button.click()
-
     def fill_form(self, user: SimpleUser):
         browser.element('#userName').type(user.full_name)
         browser.element('#userEmail').type(user.email)
@@ -45,4 +42,5 @@ class TextBoxRegistrationPage:
         self.email.type(simple_user.email)
         self.current_address.type(simple_user.current_address)
         self.permanent_address.type(simple_user.permanent_address)
+        self.submit_button.click()
         return self

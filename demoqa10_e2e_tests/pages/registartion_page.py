@@ -6,7 +6,7 @@ from demoqa10_e2e_tests.utils import resource
 from demoqa10_e2e_tests.test_data.users import User
 from selene import browser, be, have
 
-from demoqa10_e2e_tests.utils.user_data_processing import generate_hobbies
+from demoqa10_e2e_tests.utils.user_data_processing import get_hobbies
 
 
 class RegistrationPage:
@@ -95,7 +95,7 @@ class RegistrationPage:
                 user.mobile,
                 f'{user.date_of_birth_day} {user.date_of_birth_month},{user.date_of_birth_year}',
                 user.subjects,
-                generate_hobbies(user),
+                get_hobbies(user),
                 user.picture,
                 user.current_address,
                 f'{user.state} {user.city}',
