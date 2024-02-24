@@ -1,9 +1,9 @@
-from demoqa10_e2e_tests.data import users
+from demoqa10_e2e_tests.test_data import users
 from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage
 
 
 def test_fill_practice_form_with_revision_table_hi_level(browser_management):
-    worker = users.AdvancedUser
+    worker = users.advanced_user
 
     registration_page = RegistrationPage()
 

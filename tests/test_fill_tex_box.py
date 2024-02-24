@@ -1,7 +1,7 @@
 from selene import browser, have
 
 from demoqa10_e2e_tests.application import app
-from demoqa10_e2e_tests.data import users
+from demoqa10_e2e_tests.test_data import users
 
 
 def test_fill_text_box_left_panel(browser_management):

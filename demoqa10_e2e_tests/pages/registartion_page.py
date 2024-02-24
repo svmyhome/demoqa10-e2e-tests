@@ -1,10 +1,12 @@
+from enum import Enum
+
 import allure
 
-from demoqa10_e2e_tests import resource
-from demoqa10_e2e_tests.data.users import AdvancedUser
+from demoqa10_e2e_tests.utils import resource
+from demoqa10_e2e_tests.test_data.users import User
 from selene import browser, be, have
 
-from demoqa10_e2e_tests.resource import generate_hobbies
+from demoqa10_e2e_tests.utils.user_data_processing import generate_hobbies
 
 
 class RegistrationPage:
@@ -27,7 +29,7 @@ class RegistrationPage:
             browser.open('/automation-practice-form')
         return self
 
-    def fill_date_of_birth(self, user: AdvancedUser):
+    def fill_date_of_birth(self, user: User):
         browser.element('#dateOfBirthInput').click()
         browser.element(".react-datepicker__year-select").send_keys(
             user.date_of_birth_year
@@ -39,21 +41,21 @@ class RegistrationPage:
         return self
 
     @allure.step('Select hobbies')
-    def hobbies_choose(self, hobbies: list):
+    def hobbies_choose(self, hobbies: list[Enum]):
         for hobby in hobbies:
             browser.all("[for^='hobbies-checkbox']").element_by(
-                have.exact_text(hobby)
+                have.exact_text(hobby.value)
             ).click()
         return self
 
     @allure.step('Select state')
-    def fill_state(self, user: AdvancedUser):
+    def fill_state(self, user: User):
         browser.element("#state").click()
         browser.all("[id^=react-select][id*=option]").element_by(
             have.exact_text(user.state)
         ).click()
 
-    def register(self, user: AdvancedUser):
+    def register(self, user: User):
         with allure.step('Input first name'):
             self.first_name.should(be.blank).type(user.first_name)
         with allure.step('Input last name'):
@@ -84,7 +86,7 @@ class RegistrationPage:
 
         return self
 
-    def should_have_registered_user_with(self, user: AdvancedUser):
+    def should_have_registered_user_with(self, user: User):
         browser.element(".table").all("td:nth-child(2)").should(
             have.exact_texts(
                 f"{user.first_name} {user.last_name}",

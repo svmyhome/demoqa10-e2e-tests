@@ -1,6 +1,6 @@
 from selene import browser
 
-from demoqa10_e2e_tests.data.users import SimpleUser
+from demoqa10_e2e_tests.test_data.users import SimpleUser
 
 
 class TextBoxRegistrationPage:
