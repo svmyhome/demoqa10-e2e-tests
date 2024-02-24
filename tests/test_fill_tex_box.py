@@ -1,6 +1,5 @@
 import allure
 from allure_commons.types import Severity
-from selene import browser, have
 
 from demoqa10_e2e_tests.application import app
 from demoqa10_e2e_tests.test_data import users
