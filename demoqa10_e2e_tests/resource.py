@@ -1,7 +1,7 @@
 import datetime
 from enum import Enum
 from pathlib import Path
-from demoqa10_e2e_tests.data.users import User
+from demoqa10_e2e_tests.data.users import AdvancedUser
 
 
 class Hobbies(Enum):
@@ -20,7 +20,7 @@ def generate_date_of_birth(year, month, day):
     return date_time.strftime("%d %B,%Y")
 
 
-def generate_hobbies(user: User):
+def generate_hobbies(user: AdvancedUser):
     hobbies_list = []
     for hobby in user.hobbies:
         hobbies_list.append(hobby)
