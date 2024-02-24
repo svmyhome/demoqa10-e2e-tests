@@ -6,13 +6,12 @@ from demoqa10_e2e_tests.application import app
 from demoqa10_e2e_tests.test_data import users
 
 
-
-@allure.tag('DemoQA')
-@allure.severity(Severity.NORMAL)
-@allure.label('MDN78', 'QAauto')
-@allure.feature('Simple registration form')
-@allure.story('Sent simple registration form')
-@allure.link('https://demoqa.com', name='Text Box')
+@allure.tag('DemoQA', 'Проверка внутри Page object')
+@allure.feature('Text Box 1')
+@allure.story('Register the user')
+@allure.label('OWNER', 'Vladimir')
+@allure.severity(Severity.BLOCKER)
+@allure.link('https://demoqa.com', name='Text Box Form')
 def test_fill_text_box_left_panel(browser_management):
     worker = users.simple_user
 
