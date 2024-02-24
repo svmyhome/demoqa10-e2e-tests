@@ -1,7 +1,7 @@
 import allure
 from selene import browser, be, have
 
-from demoqa10_e2e_tests import resource
+from demoqa10_e2e_tests.utils import resource
 
 
 class RegistrationPage:
@@ -96,17 +96,17 @@ class RegistrationPage:
 
     @allure.step('Assert registration form')
     def assert_fill_form(
-        self,
-        name,
-        email,
-        gender,
-        mobile,
-        birthday,
-        subjects,
-        hobbies,
-        picture,
-        address,
-        state_city,
+            self,
+            name,
+            email,
+            gender,
+            mobile,
+            birthday,
+            subjects,
+            hobbies,
+            picture,
+            address,
+            state_city,
     ):
         browser.element('.table-responsive').all('tbody>tr').should(
             have.exact_texts(
@@ -124,8 +124,5 @@ class RegistrationPage:
         )
 
     @allure.step('Close modal window')
-    def close_submiting_form(self):
+    def close_submitting_form(self):
         browser.element("#closeLargeModal").double_click()
-
-    def get_form_table_cells(self):
-        return browser.element('.table-responsive').all('td')

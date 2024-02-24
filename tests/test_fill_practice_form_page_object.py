@@ -1,14 +1,7 @@
-import os
-
 import allure
 from allure_commons.types import Severity
-from selene import browser, be, have
 
 from demoqa10_e2e_tests.pages.registration_page import RegistrationPage
-
-YEAR = '2019'
-MONTH = '8'
-DAY = '01'
 
 
 @allure.tag('DemoQA', 'Проверка внутри Page object')
@@ -30,7 +23,7 @@ def test_fill_practice_form_with_revision(browser_management):
 
     registration_page.fill_mobile('0123456789')
 
-    registration_page.fill_date_of_birth(YEAR, MONTH, DAY)
+    registration_page.fill_date_of_birth('2019', '8', '01')
 
     registration_page.fill_subjects('Physics')
 
@@ -58,5 +51,4 @@ def test_fill_practice_form_with_revision(browser_management):
         'Address SPB, lenina 10',
         'State and City Uttar Pradesh Lucknow',
     )
-    registration_page.close_submiting_form()
-
+    registration_page.close_submitting_form()
