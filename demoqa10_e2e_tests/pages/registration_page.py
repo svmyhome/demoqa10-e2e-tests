@@ -124,8 +124,5 @@ class RegistrationPage:
         )
 
     @allure.step('Close modal window')
-    def close_submiting_form(self):
+    def close_submitting_form(self):
         browser.element("#closeLargeModal").double_click()
-
-    def get_form_table_cells(self):
-        return browser.element('.table-responsive').all('td')
