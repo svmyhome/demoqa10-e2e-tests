@@ -1,5 +1,3 @@
-import datetime
-
 from demoqa10_e2e_tests.test_data.users import User
 
 

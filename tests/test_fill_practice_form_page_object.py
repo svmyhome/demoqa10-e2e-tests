@@ -4,6 +4,7 @@ from allure_commons.types import Severity
 from demoqa10_e2e_tests.test_data import users
 from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage
 
+
 @allure.tag('DemoQA', 'Проверка внутри Page object')
 @allure.feature('Registration Form 1')
 @allure.story('Register the user')
