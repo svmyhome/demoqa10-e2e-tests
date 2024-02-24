@@ -16,4 +16,4 @@ def test_fill_text_box_left_panel(browser_management):
 
     app.left_panel.open_simple_registration_form()
     app.simple_registration_page.fill(worker)
-    app.profile.should_have_submited_info(worker)
+    app.profile.should_have_submitted_info(worker)
