@@ -1,49 +1,23 @@
-import datetime
-from demoqa10_e2e_tests.data.users import User
+import allure
+from allure_commons.types import Severity
 
-from selene import have
-
-from demoqa10_e2e_tests.pages.registartion_page import RegistrationPage, Hobbies
-
-YEAR = 2019
-MONTH = 8
-DAY = 1
+from demoqa10_e2e_tests.test_data import users
+from demoqa10_e2e_tests.pages.registration_page import RegistrationPage
 
 
+@allure.tag('DemoQA', 'Проверка внутри Page object')
+@allure.feature('Registration Form 1')
+@allure.story('Register the user')
+@allure.label('OWNER', 'Vladimir')
+@allure.severity(Severity.BLOCKER)
+@allure.link('https://demoqa.com', name='Practice Form')
 def test_fill_practice_form_with_revision_table_hi_level(browser_management):
-    user = User(
-        'Ivan',
-        'Petrov',
-        'qaz@mail.ru',
-        'Male',
-        '0123456789',
-        datetime.date(YEAR, MONTH, DAY),
-        ('p', 'Physics'),
-        [Hobbies.sport, Hobbies.reading, Hobbies.music],
-        'README.md',
-        'SPB, lenina 10',
-        'Uttar Pradesh',
-        'Lucknow',
-    )
-    full_registration_page = RegistrationPage()
+    worker = users.advanced_user
 
-    full_registration_page.open_page()
+    registration_page = RegistrationPage()
 
-    full_registration_page.register(user)
+    registration_page.open_page()
 
-    full_registration_page.submit()
+    registration_page.register(worker)
 
-    full_registration_page.get_form_table_cells().should(
-        have.exact_texts(
-            ('Student Name', 'Ivan Petrov'),
-            ('Student Email', 'qaz@mail.ru'),
-            ('Gender', 'Male'),
-            ('Mobile', '0123456789'),
-            ('Date of Birth', '01 September,2019'),
-            ('Subjects', 'Physics'),
-            ('Hobbies', 'Sports, Reading, Music'),
-            ('Picture', 'README.md'),
-            ('Address', 'SPB, lenina 10'),
-            ('State and City', 'Uttar Pradesh Lucknow'),
-        )
-    )
+    registration_page.should_have_registered_user_with(worker)

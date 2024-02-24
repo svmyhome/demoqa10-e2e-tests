@@ -1,6 +1,7 @@
+import allure
 from selene import browser
 
-from demoqa10_e2e_tests.data.users import SimpleUser
+from demoqa10_e2e_tests.test_data.users import SimpleUser
 
 
 class TextBoxRegistrationPage:
@@ -14,35 +15,15 @@ class TextBoxRegistrationPage:
     def open(self):
         browser.open('/text-box')
 
-    def fill_fullname(self, value):
-        self.full_name.type(value)
-        return self
-
-    def fill_email(self, value):
-        self.email.type(value)
-        return self
-
-    def fill_current_address(self, value):
-        self.current_address.type(value)
-        return self
-
-    def fill_permanent_address(self, value):
-        self.permanent_address.type(value)
-        return self
-
-    def submit(self):
-        self.submit_button.click()
-
-    def fill_form(self, user: SimpleUser):
-        browser.element('#userName').type(user.full_name)
-        browser.element('#userEmail').type(user.email)
-        browser.element('#currentAddress').type(user.current_address)
-        browser.element('#permanentAddress').type(user.permanent_address)
-        browser.element('#submit').click()
-
     def fill(self, simple_user: SimpleUser):
-        self.full_name.type(simple_user.full_name)
-        self.email.type(simple_user.email)
-        self.current_address.type(simple_user.current_address)
-        self.permanent_address.type(simple_user.permanent_address)
+        with allure.step('Fill full name'):
+            self.full_name.type(simple_user.full_name)
+        with allure.step('Fill Email'):
+            self.email.type(simple_user.email)
+        with allure.step('Fill current address'):
+            self.current_address.type(simple_user.current_address)
+        with allure.step('Fill permanent address'):
+            self.permanent_address.type(simple_user.permanent_address)
+        with allure.step('Submit form'):
+            self.submit_button.click()
         return self
