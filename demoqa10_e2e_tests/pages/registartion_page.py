@@ -1,10 +1,10 @@
 import allure
 
-from demoqa10_e2e_tests import resource
-from demoqa10_e2e_tests.data.users import User
+from demoqa10_e2e_tests.utils import resource
+from demoqa10_e2e_tests.test_data.users import User
 from selene import browser, be, have
 
-from demoqa10_e2e_tests.resource import generate_hobbies
+from demoqa10_e2e_tests.utils.user_data_processing import generate_hobbies
 
 
 class RegistrationPage:
@@ -42,7 +42,7 @@ class RegistrationPage:
     def hobbies_choose(self, hobbies: list):
         for hobby in hobbies:
             browser.all("[for^='hobbies-checkbox']").element_by(
-                have.exact_text(hobby)
+                have.exact_text(hobby.value)
             ).click()
         return self
 
@@ -94,7 +94,6 @@ class RegistrationPage:
                 f'{user.date_of_birth_day} {user.date_of_birth_month},{user.date_of_birth_year}',
                 user.subjects,
                 generate_hobbies(user),
-                # f'{user.hobbies[0]}, {user.hobbies[0]}, {user.hobbies[2]}',
                 user.picture,
                 user.current_address,
                 f'{user.state} {user.city}',
