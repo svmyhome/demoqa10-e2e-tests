@@ -96,17 +96,17 @@ class RegistrationPage:
 
     @allure.step('Assert registration form')
     def assert_fill_form(
-        self,
-        name,
-        email,
-        gender,
-        mobile,
-        birthday,
-        subjects,
-        hobbies,
-        picture,
-        address,
-        state_city,
+            self,
+            name,
+            email,
+            gender,
+            mobile,
+            birthday,
+            subjects,
+            hobbies,
+            picture,
+            address,
+            state_city,
     ):
         browser.element('.table-responsive').all('tbody>tr').should(
             have.exact_texts(
