@@ -1,15 +1,9 @@
 from dataclasses import dataclass
-import datetime
-
-from demoqa10_e2e_tests.resource import Hobbies
-
-YEAR = 2019
-MONTH = 8
-DAY = 1
+from enum import Enum
 
 
 @dataclass
-class AdvancedUser:
+class User:
     first_name: str
     last_name: str
     email: str
@@ -19,14 +13,20 @@ class AdvancedUser:
     date_of_birth_month: str
     date_of_birth_day: str
     subjects: str
-    hobbies: list
+    hobbies: list[Enum]
     picture: str
     current_address: str
     state: str
     city: str
 
 
-worker = AdvancedUser(
+class Hobbies(Enum):
+    Sport = 'Sports'
+    Reading = 'Reading'
+    Music = 'Music'
+
+
+advanced_user = User(
     first_name='Ivan',
     last_name='Petrov',
     email='qaz@mail.ru',
@@ -36,7 +36,7 @@ worker = AdvancedUser(
     date_of_birth_month='January',
     date_of_birth_day='10',
     subjects='Physics',
-    hobbies=[Hobbies.sport.value, Hobbies.reading.value, Hobbies.music.value],
+    hobbies=[Hobbies.Sport, Hobbies.Reading, Hobbies.Music],
     picture='robo.png',
     current_address='SPB, lenina 10',
     state='Uttar Pradesh',
