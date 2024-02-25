@@ -7,6 +7,10 @@
 
 [Lesson 9: Allure report](https://school.qa.guru/pl/teach/control/lesson/view?id=321205612)
 
+[Lesson 10: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321374863)
+    [Lesson 10: Homework  mid-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_mid-level-step-objects)
+    [Lesson 10: Homework high-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_high-level-step-objects)
+    [Lesson 10: HomeWork application-manager](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_application-manager)
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -35,4 +39,6 @@ https://github.com/aleksandr-kotlyar/local-allure-history-trends-bash
 
 Дополнительная библиотека 
 bash allure_generate.sh tests/allure-results/
+
+allure open allure
 
