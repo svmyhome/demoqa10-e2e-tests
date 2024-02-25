@@ -7,10 +7,12 @@
 
 [Lesson 9: Allure report](https://school.qa.guru/pl/teach/control/lesson/view?id=321205612)
 
-[Lesson 10: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321374863)
-    [Lesson 10: Homework  mid-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_mid-level-step-objects)
-    [Lesson 10: Homework high-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_high-level-step-objects)
-    [Lesson 10: HomeWork application-manager](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_application-manager)
+[Lesson 10: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321374863)  
+    [Lesson 10: Homework  mid-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_mid-level-step-objects)  
+    [Lesson 10: Homework high-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_high-level-step-objects)  
+    [Lesson 10: HomeWork application-manager](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_application-manager)  
+
+[Lesson 11: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 

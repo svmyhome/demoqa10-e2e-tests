@@ -11,7 +11,7 @@ from demoqa10_e2e_tests.test_data import users
 @allure.label('OWNER', 'Vladimir')
 @allure.severity(Severity.BLOCKER)
 @allure.link('https://demoqa.com', name='Text Box Form')
-def test_fill_text_box_left_panel(browser_management):
+def test_fill_text_box_left_panel():
     worker = users.simple_user
 
     app.left_panel.open_simple_registration_form()
