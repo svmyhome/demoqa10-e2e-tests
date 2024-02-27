@@ -44,3 +44,10 @@ bash allure_generate.sh tests/allure-results/
 
 allure open allure
 
+### Pydantic
+берет данные из .env если файла нет не ругается, а берет из самого pydentic определенного в project.py
+как запускать из строки  
+base_url='https://google.com/' timeout='10.0' pytest tests  
+driver_name=firefox pytest tests  
+env -S 'driver_name=firefox' pytest tests  
+context=stage pytest tests  

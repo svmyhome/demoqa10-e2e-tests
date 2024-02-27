@@ -1,5 +1,7 @@
 from enum import Enum
 import allure
+from selenium.webdriver import Keys
+
 from demoqa10_e2e_tests.utils import resource
 from demoqa10_e2e_tests.test_data.users import User
 from selene import browser, be, have
