@@ -1,10 +1,8 @@
-import os
-
 import allure
-import pytest
-from selene import be, have, command
 
+from selene import be, have
 
+from demoqa10_e2e_tests.utils.resource import relative_from_root
 
 YEAR = '2019'
 MONTH = '8'
@@ -35,7 +33,9 @@ def test_fill_practice_form_with_revision(setup_browser):
             f".react-datepicker__day--0{DAY}:not(.react-datepicker__day--outside-month)"
         ).click()
 
-        browser.element("#subjectsContainer").click().element('#subjectsInput').type('p')
+        browser.element("#subjectsContainer").click().element('#subjectsInput').type(
+            'p'
+        )
 
         browser.all("[id^=react-select-2-option]").element_by(
             have.exact_text('Physics')

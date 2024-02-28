@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "demoqa10-e2e-tests"
+version = "0.1.0"
+description = ""
+authors = ["vladimir <svmyhome@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.5"
+pytest = "^7.4.4"
+selene = {version = "^2.0.0rc5", allow-prereleases = true}
+requests = "^2.31.0"
+pypdf = "^4.0.1"
+xlrd = "^2.0.1"
+openpyxl = "^3.1.2"
+allure-pytest = "^2.13.2"
+pydantic = "^2.6.2"
+pydantic-settings = "^2.2.1"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "--alluredir=allure-results"
+#addopts = "--alluredir=allure-results --clean-alluredir"
