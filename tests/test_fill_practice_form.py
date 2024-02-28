@@ -7,8 +7,8 @@ YEAR = '2019'
 MONTH = '8'
 DAY = '01'
 
-@pytest.fixture(setup_browser)
-def test_fill_practice_form_with_revision():
+
+def test_fill_practice_form_with_revision(setup_browser):
     browser.open('http://demoqa.com/automation-practice-form')
 
     browser.element('#firstName').should(be.blank).type('Ivan')
