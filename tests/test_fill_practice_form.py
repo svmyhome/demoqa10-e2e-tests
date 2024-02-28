@@ -1,12 +1,7 @@
 import allure
-
 from selene import be, have
 
 from demoqa10_e2e_tests.utils.resource import relative_from_root
-
-YEAR = '2019'
-MONTH = '8'
-DAY = '01'
 
 
 @allure.title("Successful fill form")
@@ -26,11 +21,11 @@ def test_fill_practice_form_with_revision(setup_browser):
 
         browser.element('#dateOfBirthInput').click()
         browser.element(".react-datepicker__year-select").click()
-        browser.element(f"[value='{YEAR}']").click()
+        browser.element(f"[value='{2019}']").click()
         browser.element(".react-datepicker__month-select").click()
-        browser.element(f"[value='{MONTH}']").click()
+        browser.element(f"[value='{8}']").click()
         browser.element(
-            f".react-datepicker__day--0{DAY}:not(.react-datepicker__day--outside-month)"
+            f".react-datepicker__day--0{'01'}:not(.react-datepicker__day--outside-month)"
         ).click()
 
         browser.element("#subjectsContainer").click().element('#subjectsInput').type(
