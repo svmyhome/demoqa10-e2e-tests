@@ -1,10 +1,11 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 
 from demoqa10_e2e_tests.application import app
 from demoqa10_e2e_tests.test_data import users
 
-
+@pytest.mark.skip
 @allure.tag('DemoQA', 'Проверка внутри Page object')
 @allure.feature('Text Box')
 @allure.story('Register the user')

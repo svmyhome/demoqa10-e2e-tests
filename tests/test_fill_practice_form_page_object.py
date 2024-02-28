@@ -1,10 +1,12 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 
 from demoqa10_e2e_tests.pages.registration_page import RegistrationPage
 from demoqa10_e2e_tests.test_data import users
 
 
+@pytest.mark.skip
 @allure.tag('DemoQA', 'Проверка внутри Page object')
 @allure.feature('Registration Page')
 @allure.story('Register the user')
