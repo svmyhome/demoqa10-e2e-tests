@@ -6,7 +6,7 @@ authors = ["vladimir <svmyhome@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10.5"
 pytest = "^7.4.4"
 selene = {version = "^2.0.0rc5", allow-prereleases = true}
 requests = "^2.31.0"
