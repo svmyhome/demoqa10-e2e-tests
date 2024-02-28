@@ -1,14 +1,20 @@
 import allure
-from selene import be, have
+from selene import be, have, browser, command
 
 from demoqa10_e2e_tests.utils.resource import relative_from_root
 
 
 @allure.title("Successful fill form")
 def test_fill_practice_form_with_revision(setup_browser):
-    browser = setup_browser
     with allure.step("Open registrations form"):
-        browser.open("https://demoqa.com/automation-practice-form")
+        browser.open("/automation-practice-form")
+        browser.all('[id^=google_ads][id$=container__]').with_(timeout=10).wait_until(
+            have.size_greater_than_or_equal(3)
+        )
+        browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
+
+    with allure.step("Consent form"):
+        browser.element('.fc-cta-consent').should(be.clickable).click()
 
     with allure.step("Fill form"):
         browser.element('#firstName').should(be.blank).type('Ivan')
@@ -52,6 +58,7 @@ def test_fill_practice_form_with_revision(setup_browser):
 
         browser.element('#currentAddress').should(be.blank).type('1234 casc csdc 56789')
 
+        browser.element('#state').perform(command.js.scroll_into_view)
         browser.element('#state').click()
         browser.all("[id^='react-select-3-option']").element_by(
             have.exact_text('Uttar Pradesh')
