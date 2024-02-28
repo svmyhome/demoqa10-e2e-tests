@@ -1,13 +1,14 @@
 import os
 
+import pytest
 from selene import browser, be, have, command
 
 YEAR = '2019'
 MONTH = '8'
 DAY = '01'
 
-
-def test_fill_practice_form_with_revision(browser_management):
+@pytest.fixture(setup_browser)
+def test_fill_practice_form_with_revision():
     browser.open('http://demoqa.com/automation-practice-form')
 
     browser.element('#firstName').should(be.blank).type('Ivan')
