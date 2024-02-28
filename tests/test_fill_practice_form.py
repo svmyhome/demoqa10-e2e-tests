@@ -4,7 +4,7 @@ import allure
 import pytest
 from selene import be, have, command
 
-from demoqa10_e2e_tests.utils.resource import relative_from_root
+
 
 YEAR = '2019'
 MONTH = '8'
