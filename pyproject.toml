@@ -12,6 +12,11 @@ selene = {version = "^2.0.0rc5", allow-prereleases = true}
 requests = "^2.31.0"
 allure-pytest = "^2.13.2"
 python-dotenv = "^1.0.1"
+xlrd = "^2.0.1"
+openpyxl = "^3.1.2"
+pydantic = "^2.6.3"
+pydantic-settings = "^2.2.1"
+pypdf = "^4.0.2"
 
 
 [build-system]
