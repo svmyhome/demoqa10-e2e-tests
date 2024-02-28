@@ -1,7 +1,4 @@
-import os
-
-import pytest
-from selene import browser, be, have, command
+from selene import be, have
 
 from demoqa10_e2e_tests.utils.resource import relative_from_root
 
@@ -10,7 +7,8 @@ MONTH = '8'
 DAY = '01'
 
 
-def test_fill_practice_form_with_revision():
+def test_fill_practice_form_with_revision(setup_browser):
+    browser = setup_browser
     browser.open('http://demoqa.com/automation-practice-form')
 
 
