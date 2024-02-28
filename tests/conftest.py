@@ -21,6 +21,7 @@ def setup_browser(request):
     )
 
     browser = Browser(Config(driver))
+    browser.get('http://demoqa.com')
     yield browser
 
     attach.add_screenshot(browser)
