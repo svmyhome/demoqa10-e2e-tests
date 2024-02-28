@@ -8,7 +8,7 @@ from demoqa10_e2e_tests.utils.resource import relative_from_root
 def test_fill_practice_form_with_revision(setup_browser):
     browser = setup_browser
     with allure.step("Open registrations form"):
-        browser.open('http://demoqa.com/automation-practice-form')
+        browser.open("https://demoqa.com/automation-practice-form")
 
     with allure.step("Fill form"):
         browser.element('#firstName').should(be.blank).type('Ivan')
