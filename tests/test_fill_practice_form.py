@@ -8,13 +8,10 @@ from demoqa10_e2e_tests.utils.resource import relative_from_root
 def test_fill_practice_form_with_revision(setup_browser):
     with allure.step("Open registrations form"):
         browser.open("/automation-practice-form")
-        browser.all('[id^=google_ads][id$=container__]').with_(timeout=10).wait_until(
-            have.size_greater_than_or_equal(3)
-        )
-        browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
 
-    with allure.step("Consent form"):
-        browser.element('.fc-cta-consent').should(be.clickable).click()
+    if browser.element('.fc-cta-consent').should(be.visible):
+        with allure.step("Consent form"):
+            browser.element('.fc-cta-consent').should(be.clickable).click()
 
     with allure.step("Fill form"):
         browser.element('#firstName').should(be.blank).type('Ivan')
@@ -38,6 +35,9 @@ def test_fill_practice_form_with_revision(setup_browser):
             'p'
         )
 
+        browser.all("[id^=react-select-2-option]").element_by(
+            have.exact_text('Physics')
+        ).perform(command.js.scroll_into_view)
         browser.all("[id^=react-select-2-option]").element_by(
             have.exact_text('Physics')
         ).click()
