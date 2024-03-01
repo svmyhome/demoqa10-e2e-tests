@@ -1,19 +1,25 @@
+import dotenv
 import pytest
 from selene import browser
 from selenium import webdriver
+
+import project
 from utils import attach
 from selenium.webdriver.chrome.options import Options
 
 
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
-    browser.config.base_url = "https://demoqa.com"
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
+    dotenv.load_dotenv()
+    browser.config.base_url = project.config.base_url
+    browser.config.hold_driver_at_exit = project.config.hold_driver_at_exit
+    browser.config.window_width = project.config.window_width
+    browser.config.window_height = project.config.window_height
+    browser.config.timeout = project.config.timeout
 
     options = Options()
     selenoid_capabilities = {
-        "browserName": "chrome",
+        "browserName": project.config.driver_name,
         "browserVersion": "100.0",
         "selenoid:options": {"enableVNC": True, "enableVideo": True},
     }
@@ -33,18 +39,3 @@ def setup_browser(request):
     attach.add_video(browser)
 
     browser.quit()
-
-# @pytest.fixture(scope='function', autouse=True)
-# def browser_management():
-#     dotenv.load_dotenv()
-#     with allure.step('Driver configuration'):
-#         browser.config.base_url = project.config.base_url
-#         browser.config.driver_name = project.config.driver_name
-#         browser.config.hold_driver_at_exit = project.config.hold_driver_at_exit
-#         browser.config.window_width = project.config.window_width
-#         browser.config.window_height = project.config.window_height
-#         browser.config.timeout = project.config.timeout
-#
-#     yield
-#     with allure.step('Close driver'):
-#         browser.quit()

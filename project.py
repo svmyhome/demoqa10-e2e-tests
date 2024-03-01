@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     base_url: str = 'https://demoqa.com'
     driver_name: str = 'chrome'
     hold_driver_at_exit: bool = False
-    window_width: int = 1300
+    window_width: int = 1800
     window_height: int = 2000
     timeout: float = 4.0
 
