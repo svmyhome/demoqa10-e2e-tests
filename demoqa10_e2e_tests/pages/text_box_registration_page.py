@@ -1,7 +1,8 @@
 import allure
-from selene import browser
+from selene import browser, be
 
 from demoqa10_e2e_tests.test_data.users import SimpleUser
+from demoqa10_e2e_tests.utils import page_actions
 
 
 class TextBoxRegistrationPage:
@@ -12,6 +13,7 @@ class TextBoxRegistrationPage:
         self.permanent_address = browser.element('#permanentAddress')
         self.submit_button = browser.element('#submit')
 
+    @allure.step('Open browser')
     def open(self):
         browser.open('/text-box')
 
@@ -25,5 +27,6 @@ class TextBoxRegistrationPage:
         with allure.step('Fill permanent address'):
             self.permanent_address.type(simple_user.permanent_address)
         with allure.step('Submit form'):
+            page_actions.scroll_to_element('#submit')
             self.submit_button.click()
         return self

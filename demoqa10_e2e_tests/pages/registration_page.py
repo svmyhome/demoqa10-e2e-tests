@@ -1,10 +1,11 @@
 from enum import Enum
 import allure
-from selenium.webdriver import Keys
 
-from demoqa10_e2e_tests.utils import resource
+from demoqa10_e2e_tests.utils import resource, page_actions
 from demoqa10_e2e_tests.test_data.users import User
-from selene import browser, be, have, command
+from selene import browser, be, have
+
+
 from demoqa10_e2e_tests.utils.user_data_processing import get_hobbies
 
 
@@ -33,9 +34,6 @@ class RegistrationPage:
     @allure.step('Consent form')
     def consent_form(self):
         self.consent.should(be.clickable).click()
-
-    def scroll_to_element(self, value):
-        browser.element('#subjectsContainer').perform(command.js.scroll_into_view)
 
     def fill_date_of_birth(self, user: User):
         browser.element('#dateOfBirthInput').click()
@@ -80,7 +78,7 @@ class RegistrationPage:
         with allure.step('Input date of birth'):
             self.fill_date_of_birth(user)
         with allure.step('Select subjects'):
-            self.scroll_to_element('Physics')
+            page_actions.scroll_to_element('#subjectsContainer')
             self.subjects.type(user.subjects).press_enter()
         self.hobbies_choose(user.hobbies)
         with allure.step('Select picture'):
