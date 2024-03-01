@@ -12,6 +12,8 @@ selene = {version = "^2.0.0rc5", allow-prereleases = true}
 requests = "^2.31.0"
 allure-pytest = "^2.13.2"
 python-dotenv = "^1.0.1"
+pydantic = "^2.6.2"
+pydantic-settings = "^2.2.1"
 
 
 [build-system]
