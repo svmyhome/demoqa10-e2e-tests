@@ -53,3 +53,14 @@ base_url='https://google.com/' timeout='10.0' pytest tests
 driver_name=firefox pytest tests  
 env -S 'driver_name=firefox' pytest tests  
 context=stage pytest tests  
+
+### Jenkins
+
+Execute shell
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install poetry
+poetry install
+pytest .
+```
