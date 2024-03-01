@@ -8,6 +8,7 @@ def generate_date_of_birth(year, month, day):
     # Преобразуем дату и время в нужный формат
     return date_time.strftime("%d %B,%Y")
 
+
 def get_hobbies(user: User):
     hobbies_list = []
     for hobby in user.hobbies:

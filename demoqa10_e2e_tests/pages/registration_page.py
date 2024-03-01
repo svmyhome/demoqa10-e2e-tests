@@ -27,8 +27,7 @@ class RegistrationPage:
 
     @allure.step('Open browser')
     def open_page(self):
-        with allure.step('Open page'):
-            browser.open('/automation-practice-form')
+        browser.open('/automation-practice-form')
         return self
 
     @allure.step('Consent form')
