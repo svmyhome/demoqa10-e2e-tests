@@ -7,6 +7,14 @@
 
 [Lesson 9: Allure report](https://school.qa.guru/pl/teach/control/lesson/view?id=321205612)
 
+[Lesson 10: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321374863)  
+    [Lesson 10: Homework  mid-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_mid-level-step-objects)  
+    [Lesson 10: Homework high-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_high-level-step-objects)  
+    [Lesson 10: HomeWork application-manager](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_application-manager)  
+
+[Lesson 11: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)  
+
+[Lesson 12: Jenkins First Task:](https://school.qa.guru/pl/teach/control/lesson/view?id=321892208)    
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -36,3 +44,23 @@ https://github.com/aleksandr-kotlyar/local-allure-history-trends-bash
 Дополнительная библиотека 
 bash allure_generate.sh tests/allure-results/
 
+allure open allure
+
+### Pydantic
+берет данные из .env если файла нет не ругается, а берет из самого pydentic определенного в project.py
+как запускать из строки  
+base_url='https://google.com/' timeout='10.0' pytest tests  
+driver_name=firefox pytest tests  
+env -S 'driver_name=firefox' pytest tests  
+context=stage pytest tests  
+
+### Jenkins
+
+Execute shell
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install poetry
+poetry install
+pytest .
+```
