@@ -8,9 +8,13 @@ from utils import attach
 from selenium.webdriver.chrome.options import Options
 
 
+@pytest.fixture(scope='session', autouse=True)
+def load_env():
+    dotenv.load_dotenv()
+
+
 @pytest.fixture(scope='function')
 def setup_browser(request):
-    dotenv.load_dotenv()
     browser.config.base_url = project.config.base_url
     browser.config.hold_driver_at_exit = project.config.hold_driver_at_exit
     browser.config.window_width = project.config.window_width
