@@ -149,6 +149,9 @@ modules.xml
 allure-report/
 allure-results/
 allure/
+*/allure/
+*/allure-report/
+*/allure-results/
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

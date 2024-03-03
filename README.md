@@ -64,3 +64,12 @@ pip install poetry
 poetry install
 pytest .
 ```
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install poetry
+poetry install
+pytest ${TEST_FOLDER} --browser_version=${BROWSER_VERSION}
+```
+
+pytest tests/ --browser_version=99
