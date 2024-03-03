@@ -64,3 +64,6 @@ pip install poetry
 poetry install
 pytest .
 ```
+
+
+pytest tests/ --browser_version=99
