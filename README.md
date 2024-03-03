@@ -15,6 +15,8 @@
 [Lesson 11: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)  
 
 [Lesson 12: Jenkins First Task:](https://school.qa.guru/pl/teach/control/lesson/view?id=321892208)    
+
+[Lesson 13: Jenkins run witn parameters:](https://school.qa.guru/pl/teach/control/lesson/view?id=322004438)    
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
