@@ -6,7 +6,7 @@ from demoqa10_e2e_tests.test_data import users
 
 
 @allure.tag('DemoQA', 'Проверка внутри Page object')
-@allure.feature('Text Box 1')
+@allure.feature('Text Box')
 @allure.story('Register the user')
 @allure.label('OWNER', 'Vladimir')
 @allure.severity(Severity.BLOCKER)

@@ -8,7 +8,7 @@ from utils import attach
 from selenium.webdriver.chrome.options import Options
 
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope='function')
 def setup_browser(request):
     dotenv.load_dotenv()
     browser.config.base_url = project.config.base_url

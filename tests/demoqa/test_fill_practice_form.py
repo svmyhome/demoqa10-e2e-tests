@@ -1,10 +1,17 @@
 import allure
+from allure_commons.types import Severity
 from selene import be, have, browser, command
 
 from demoqa10_e2e_tests.utils.resource import relative_from_root
 
 
-@allure.title("Successful fill form")
+@allure.tag('DemoQA', 'PracticeFormSimple', 'Проверка внутри Page object')
+@allure.feature('Registration Form')
+@allure.story('Register the user')
+@allure.label('OWNER', 'Vladimir')
+@allure.severity(Severity.BLOCKER)
+@allure.link('https://demoqa.com/automation-practice-form', name='Practice Form')
+@allure.title("Successful form completion with simple steps")
 def test_fill_practice_form_with_revision(setup_browser):
     with allure.step("Open registrations form"):
         browser.open("/automation-practice-form")
