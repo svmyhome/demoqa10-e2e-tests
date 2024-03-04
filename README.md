@@ -12,11 +12,15 @@
     [Lesson 10: Homework high-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_high-level-step-objects)  
     [Lesson 10: HomeWork application-manager](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_application-manager)  
 
-[Lesson 11: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)  
+[Lesson 11: Page object](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)  
 
-[Lesson 12: Jenkins First Task:](https://school.qa.guru/pl/teach/control/lesson/view?id=321892208)    
+[Lesson 12: Jenkins First Task](https://school.qa.guru/pl/teach/control/lesson/view?id=321892208)    
 
-[Lesson 13: Jenkins run witn parameters:](https://school.qa.guru/pl/teach/control/lesson/view?id=322004438)    
+[Lesson 13: Jenkins run witn parameters](https://school.qa.guru/pl/teach/control/lesson/view?id=322004438)    
+
+[Lesson 14: Telegram bot](https://school.qa.guru/pl/teach/control/lesson/view?id=322556453)    
+
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -75,3 +79,35 @@ pytest ${TEST_FOLDER} --browser_version=${BROWSER_VERSION}
 ```
 
 pytest tests/ --browser_version=99
+
+
+@test_qa_guru_14_bot
+Done! Congratulations on your new bot. You will find it at t.me/test_qa_guru_14_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
+
+Use this token to access the HTTP API:
+7156054513:AAHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM
+
+
+{
+ok: true,
+result: [
+{
+update_id: 168035969,
+channel_post: {
+message_id: 2,
+sender_chat: {
+id: -1002084287772,
+title: "Autotest_messages",
+type: "channel"
+},
+chat: {
+id: -1002084287772,
+title: "Autotest_messages",
+type: "channel"
+},
+date: 1709494184,
+text: "ntcn"
+}
+}
+]
+}
