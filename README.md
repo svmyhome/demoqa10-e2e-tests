@@ -81,7 +81,31 @@ pytest ${TEST_FOLDER} --browser_version=${BROWSER_VERSION}
 pytest tests/ --browser_version=99
 
 
-@test_qa_guru_14_bot
+### telegram -bot
+Text File Content:
+```
+{
+  "base": {
+    "logo": "resources/logo.png",
+    "project": "${JOB_NAME}",
+    "environment": "${ENVIRONMENT}",
+    "comment": "${COMMENT}",
+    "reportLink": "${BUILD_URL}",
+    "language": "ru",
+    "allureFolder": "allure-report",
+    "enableChart": True
+  },
+  "telegram": {
+    "token": "7156054513:AAHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM",
+    "chat": "-4149034406",
+    "replyTo": ""
+  }
+}
+```
+
+![img.png](img.png)
+
+
 Done! Congratulations on your new bot. You will find it at t.me/test_qa_guru_14_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
 
 Use this token to access the HTTP API:
