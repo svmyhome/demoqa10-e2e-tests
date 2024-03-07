@@ -15,3 +15,4 @@ class ProfilePage:
                 f'Permananet Address :{worker.permanent_address}',
             )
         )
+

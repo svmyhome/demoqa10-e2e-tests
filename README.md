@@ -96,8 +96,8 @@ Text File Content:
     "enableChart": True
   },
   "telegram": {
-    "token": "7156054513:AAHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM",
-    "chat": "-4149034406",
+    "token": "7126054513:AFHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM",
+    "chat": "-4149033206",
     "replyTo": ""
   }
 }
@@ -105,33 +105,3 @@ Text File Content:
 
 ![img.png](img.png)
 
-
-Done! Congratulations on your new bot. You will find it at t.me/test_qa_guru_14_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
-
-Use this token to access the HTTP API:
-7156054513:AAHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM
-
-
-{
-ok: true,
-result: [
-{
-update_id: 168035969,
-channel_post: {
-message_id: 2,
-sender_chat: {
-id: -1002084287772,
-title: "Autotest_messages",
-type: "channel"
-},
-chat: {
-id: -1002084287772,
-title: "Autotest_messages",
-type: "channel"
-},
-date: 1709494184,
-text: "ntcn"
-}
-}
-]
-}
