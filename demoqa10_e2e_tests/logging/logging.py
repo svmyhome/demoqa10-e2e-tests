@@ -1,5 +1,6 @@
 import re
 import types
+from functools import wraps
 
 
 def humanify(name: str):
@@ -7,6 +8,7 @@ def humanify(name: str):
 
 
 def step(fn):
+    @wraps(fn)
     def fn_with_logging(*args, **kwargs):
         fn_name = humanify(fn.__name__)
         is_method = (
@@ -69,7 +71,9 @@ def given_sign_up_form_opened():
 
 
 given_sign_up_form_opened()
-sign_up_form.fill_first_name('cdcd', 'xsxsxs', 'ARGS', value='Vladimir', lastname='1111Vladimir')
+sign_up_form.fill_first_name(
+    'cdcd', 'xsxsxs', 'ARGS', value='Vladimir', lastname='1111Vladimir'
+)
 sign_up_form.fill_email('dwehnchb@mail.ru')
 sign_up_form.fill_password('qazw')
 sign_up_form.submit()
