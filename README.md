@@ -20,6 +20,7 @@
 
 [Lesson 14: Telegram bot](https://school.qa.guru/pl/teach/control/lesson/view?id=322556453)    
 
+[Lesson 15: Fast develop](https://school.qa.guru/pl/teach/control/lesson/view?id=314614384)   
 
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
@@ -105,3 +106,5 @@ Text File Content:
 
 ![img.png](img.png)
 
+### Lesson 15: Fast develop
+https://devicon.dev/
