@@ -21,6 +21,7 @@ def test_simple_fail_1():
 @allure.severity(Severity.BLOCKER)
 @allure.link('https://demoqa.com/automation-practice-form', name='Pass')
 @allure.title("Fail Simple test 2")
+@pytest.mark.fast
 def test_simple_fail_2():
     assert False
 
@@ -32,5 +33,8 @@ def test_simple_fail_2():
 @allure.severity(Severity.BLOCKER)
 @allure.link('https://demoqa.com/automation-practice-form', name='Pass')
 @allure.title("Fail Simple test 3")
+@pytest.mark.fast
 def test_simple_fail_3():
-    assert False
+    n = 10
+    b = 11
+    assert n == b

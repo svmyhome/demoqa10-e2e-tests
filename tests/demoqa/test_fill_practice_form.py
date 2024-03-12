@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 from selene import be, have, browser, command
 
@@ -12,6 +13,7 @@ from demoqa10_e2e_tests.utils.resource import relative_from_root
 @allure.severity(Severity.BLOCKER)
 @allure.link('https://demoqa.com/automation-practice-form', name='Practice Form')
 @allure.title("Successful form completion with simple steps")
+@pytest.mark.slow
 def test_fill_practice_form_with_revision(setup_browser):
     with allure.step("Open registrations form"):
         browser.open("/automation-practice-form")

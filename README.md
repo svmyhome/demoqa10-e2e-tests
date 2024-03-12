@@ -20,6 +20,9 @@
 
 [Lesson 14: Telegram bot](https://school.qa.guru/pl/teach/control/lesson/view?id=322556453)    
 
+[Lesson 15: Fast develop](https://school.qa.guru/pl/teach/control/lesson/view?id=314614384)   
+
+[Lesson 16: Pytest](https://school.qa.guru/pl/teach/control/lesson/view?id=323933081) 
 
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
@@ -105,3 +108,37 @@ Text File Content:
 
 ![img.png](img.png)
 
+### Lesson 15: Fast develop
+https://devicon.dev/
+
+### Lesson 16: pytest
+
+Аргументы запуска. Собираем фикстуры, марки, и другую полезную информацию для отладки
+--co не запускает, но собирает и отображает тесты которые будут запущены
+pytest --co
+
+-k фильтрует тесты по определенному слову, набору слов   
+pytest --co -k skip_1
+pytest --co -k "skip or 1"
+
+-m фильтрует по @pytest.mark.fast ... @pytest.mark... 
+Необходимо явно регистрировать pyproject.toml markers=["fast: Описание", "...."] 
+pytest --co -m slow
+pytest --co -m "slow or fast"
+
+--markers выводит все возможные марки
+
+--fixtures выводит все фикстуры
+
+--duration=10 печатает 10 самых долгих тестов
+pytest . --durations=10
+
+-v показывает расширенный лог
+
+-l -список всех переменных со значением
+pytest tests/simple/test_simple_fail.py -l
+
+--setup-plan покажет план запуска включая подготовку и завершение
+pytest test_simple.py --setup-plan
+
+addopts="-l -v --durations=10" вместо строки можно описать в pyproject.toml

@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 
 
@@ -20,6 +21,7 @@ def test_simple_pass_1():
 @allure.severity(Severity.BLOCKER)
 @allure.link('https://demoqa.com/automation-practice-form', name='Pass')
 @allure.title("Simple test 2")
+@pytest.mark.fast
 def test_simple_pass_2():
     pass
 
@@ -31,6 +33,7 @@ def test_simple_pass_2():
 @allure.severity(Severity.BLOCKER)
 @allure.link('https://demoqa.com/automation-practice-form', name='Pass')
 @allure.title("Simple test 3")
+@pytest.mark.fast
 def test_simple_pass_3():
     pass
 
