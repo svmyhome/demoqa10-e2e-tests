@@ -113,7 +113,7 @@ https://devicon.dev/
 
 ### Lesson 16: pytest
 
-Аргументы запуска. Собираем фикстуры, марки, и другую полезную информацию для отладки
+#### Аргументы запуска и марки
 --co не запускает, но собирает и отображает тесты которые будут запущены
 pytest --co
 
@@ -142,3 +142,30 @@ pytest tests/simple/test_simple_fail.py -l
 pytest test_simple.py --setup-plan
 
 addopts="-l -v --durations=10" вместо строки можно описать в pyproject.toml
+
+#### Пропуск файлов
+
+skip - удобно помечать тесты не готовой функциональности или тесты которые нет необходимости запускать в этом прогоне
+@pytest.mark.skip 
+@pytest.mark.skip("TASK-1234 Тест нестабильный потому что время от времени не хватает таймаута")
+@pytest.mark.skip(reason="TASK-1234 Тест нестабильный потому что время от времени не хватает таймаута")
+
+skipif - пропуск по условию. Лучше всего описывать в виде переменной принимает True/False
+is_linux = True
+@pytest.mark.skipif(True)
+@pytest.mark.skipif(is_linux)
+@pytest.mark.skipif(is_linux, reason='Тест пропущен так как условие is_skip = True')
+
+pytestmark = pytest.mark.skip(reason="Когда нужно пропустить весь файл")
+
+
+xfail - помечаются тесты которые вероятно упадут, помечаются как XFAIL/XPASS
+@pytest.mark.xfail(reason='Тест упал и выводит XFAIL') - если тест маленький можно повесить на сам тест, но правильнее внутри теста
+
+Вот так лучше:
+assert 2 == 2
+try:
+    assert 2 == 2 
+except AssertionError:
+    pytest.xfail("TASK-1234 Test is xfail because is flaky")
+assert 3 == 3

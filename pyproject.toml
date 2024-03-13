@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10.5"
 pytest = "^7.4.4"
-selene = {version = "^2.0.0rc5", allow-prereleases = true}
+selene = { version = "^2.0.0rc5", allow-prereleases = true }
 requests = "^2.31.0"
 allure-pytest = "^2.13.2"
 python-dotenv = "^1.0.1"
@@ -21,11 +21,16 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-addopts = "--alluredir=allure-results"
+addopts = [
+    "--alluredir=allure-results",
+#    "-l",
+#    "-v",
+#    "--durations=10"
+]
 #addopts = "--alluredir=allure-results --clean-alluredir"
 
 #addopts="-l -v --durations=10"
-markers=[
+markers = [
     "fast: Маркируем тесты длящиеся менее пяти секунд",
     "slow: Тесты, которые длятся больше пяти секунд"
 ]
