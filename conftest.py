@@ -4,7 +4,7 @@ from selene import browser
 
 @pytest.fixture(scope='function')
 def browser_settings():
-    browser.config.base_url = "https://github.com/"
+    browser.config.base_url = "https://github.com"
 
 
 @pytest.fixture(

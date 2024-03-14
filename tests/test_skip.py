@@ -27,4 +27,4 @@ def test_github_mobile(manage_desktop_mobile_browser):
         browser.element('.auth-form-header').should(have.text('Sign in to GitHub'))
 
     else:
-        pytest.skip("This is mobile desktop")
+        pytest.skip("This is desktop resolution")
