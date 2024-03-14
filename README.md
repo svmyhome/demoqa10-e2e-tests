@@ -12,9 +12,18 @@
     [Lesson 10: Homework high-level-step-objects](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_high-level-step-objects)  
     [Lesson 10: HomeWork application-manager](https://github.com/svmyhome/demoqa10-e2e-tests/tree/lesson_10_application-manager)  
 
-[Lesson 11: Page object:](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)  
+[Lesson 11: Page object](https://school.qa.guru/pl/teach/control/lesson/view?id=321671178)  
 
-[Lesson 12: Jenkins First Task:](https://school.qa.guru/pl/teach/control/lesson/view?id=321892208)    
+[Lesson 12: Jenkins First Task](https://school.qa.guru/pl/teach/control/lesson/view?id=321892208)    
+
+[Lesson 13: Jenkins run witn parameters](https://school.qa.guru/pl/teach/control/lesson/view?id=322004438)    
+
+[Lesson 14: Telegram bot](https://school.qa.guru/pl/teach/control/lesson/view?id=322556453)    
+
+[Lesson 15: Fast develop](https://school.qa.guru/pl/teach/control/lesson/view?id=314614384)   
+
+[Lesson 16: Pytest](https://school.qa.guru/pl/teach/control/lesson/view?id=323933081) 
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -63,4 +72,106 @@ source .venv/bin/activate
 pip install poetry
 poetry install
 pytest .
+```
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install poetry
+poetry install
+pytest ${TEST_FOLDER} --browser_version=${BROWSER_VERSION}
+```
+
+pytest tests/ --browser_version=99
+
+
+### telegram -bot
+Text File Content:
+```
+{
+  "base": {
+    "logo": "resources/logo.png",
+    "project": "${JOB_NAME}",
+    "environment": "${ENVIRONMENT}",
+    "comment": "${COMMENT}",
+    "reportLink": "${BUILD_URL}",
+    "language": "ru",
+    "allureFolder": "allure-report",
+    "enableChart": True
+  },
+  "telegram": {
+    "token": "7126054513:AFHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM",
+    "chat": "-4149033206",
+    "replyTo": ""
+  }
+}
+```
+
+![img.png](img.png)
+
+### Lesson 15: Fast develop
+https://devicon.dev/
+
+### Lesson 16: pytest
+
+#### Аргументы запуска и марки
+--co не запускает, но собирает и отображает тесты которые будут запущены
+pytest --co
+
+-k фильтрует тесты по определенному слову, набору слов   
+pytest --co -k skip_1
+pytest --co -k "skip or 1"
+
+-m фильтрует по @pytest.mark.fast ... @pytest.mark... 
+Необходимо явно регистрировать pyproject.toml markers=["fast: Описание", "...."] 
+pytest --co -m slow
+pytest --co -m "slow or fast"
+
+--markers выводит все возможные марки
+
+--fixtures выводит все фикстуры
+
+--duration=10 печатает 10 самых долгих тестов
+pytest . --durations=10
+
+-v показывает расширенный лог
+
+-l -список всех переменных со значением
+pytest tests/simple/test_simple_fail.py -l
+
+--setup-plan покажет план запуска включая подготовку и завершение
+pytest test_simple.py --setup-plan
+
+addopts="-l -v --durations=10" вместо строки можно описать в pyproject.toml
+
+#### Пропуск файлов
+
+skip - удобно помечать тесты не готовой функциональности или тесты которые нет необходимости запускать в этом прогоне
+```
+@pytest.mark.skip 
+@pytest.mark.skip("TASK-1234 Тест нестабильный потому что время от времени не хватает таймаута")
+@pytest.mark.skip(reason="TASK-1234 Тест нестабильный потому что время от времени не хватает таймаута")
+```
+
+skipif - пропуск по условию. Лучше всего описывать в виде переменной принимает True/False
+```
+is_linux = True
+@pytest.mark.skipif(True)
+@pytest.mark.skipif(is_linux)
+@pytest.mark.skipif(is_linux, reason='Тест пропущен так как условие is_skip = True')
+```
+```
+pytestmark = pytest.mark.skip(reason="Когда нужно пропустить весь файл")
+```
+
+xfail - помечаются тесты которые вероятно упадут, помечаются как XFAIL/XPASS
+@pytest.mark.xfail(reason='Тест упал и выводит XFAIL') - если тест маленький можно повесить на сам тест, но правильнее внутри теста
+```
+Вот так лучше:
+```python
+assert 2 == 2
+try:
+    assert 2 == 2 
+except AssertionError:
+    pytest.xfail("TASK-1234 Test is xfail because is flaky")
+assert 3 == 3
 ```

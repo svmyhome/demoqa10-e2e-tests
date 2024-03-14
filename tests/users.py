@@ -53,3 +53,22 @@ class SimpleUser:
 
 
 simple_user = SimpleUser('Ivan', 'Ivan@mail.ru', 'SPB, Nevsky 10', 'SPB, Nevsky 10')
+
+
+@dataclass
+class FixtureUserWithoutRepr:
+    full_name: str
+    id: int
+    current_address: str
+    permanent_address: str
+
+
+@dataclass
+class FixtureUserWithRepr:
+    full_name: str
+    id: int
+    current_address: str
+    permanent_address: str
+
+    def __repr__(self):
+        return f'{self.full_name} {self.id}'

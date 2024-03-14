@@ -1,41 +1,49 @@
-import dotenv
 import pytest
 from selene import browser
-from selenium import webdriver
-
-import project
-from utils import attach
-from selenium.webdriver.chrome.options import Options
 
 
-@pytest.fixture(scope='function', autouse=True)
-def setup_browser(request):
-    dotenv.load_dotenv()
-    browser.config.base_url = project.config.base_url
-    browser.config.hold_driver_at_exit = project.config.hold_driver_at_exit
-    browser.config.window_width = project.config.window_width
-    browser.config.window_height = project.config.window_height
-    browser.config.timeout = project.config.timeout
+@pytest.fixture(scope='function')
+def browser_settings():
+    browser.config.base_url = "https://github.com/"
 
-    options = Options()
-    selenoid_capabilities = {
-        "browserName": project.config.driver_name,
-        "browserVersion": "100.0",
-        "selenoid:options": {"enableVNC": True, "enableVideo": True},
-    }
-    options.capabilities.update(selenoid_capabilities)
 
-    driver = webdriver.Remote(
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options,
-    )
+@pytest.fixture(
+    scope='function',
+    params=[(1920, 1000), (1600, 1000), (1366, 1000), (1084, 1000)],
+    ids=str,
+)
+def manage_desktop_browser(request, browser_settings):
+    browser.config.window_width, browser.config.window_height = request.param
 
-    browser.config.driver = driver
-    yield browser
+    yield
+    browser.quit()
 
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_html(browser)
-    attach.add_video(browser)
 
+@pytest.fixture(
+    scope='function', params=[(375, 667), (390, 844), (430, 932), (1024, 1366)], ids=str
+)
+def manage_mobile_browser(request, browser_settings):
+    browser.config.window_width, browser.config.window_height = request.param
+
+    yield
+    browser.quit()
+
+
+@pytest.fixture(
+    scope='function',
+    params=[
+        (1920, 1000),
+        (1600, 1000),
+        (1366, 1000),
+        (1084, 1000),
+        (375, 667),
+        (390, 844),
+        (430, 932),
+    ],
+    ids=str,
+)
+def manage_desktop_mobile_browser(request, browser_settings):
+    browser.config.window_width, browser.config.window_height = request.param
+
+    yield
     browser.quit()
