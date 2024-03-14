@@ -2,8 +2,7 @@ import allure
 import pytest
 from allure_commons.types import Severity
 
-from demoqa10_e2e_tests.test_data import users
-from demoqa10_e2e_tests.test_data.users import SimpleUser
+from tests import users
 
 # pytestmark = pytest.mark.skip(reason="Когда нужно пропустить весь файл")
 

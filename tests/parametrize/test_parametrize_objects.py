@@ -1,8 +1,8 @@
 import allure
 import pytest
 
-from demoqa10_e2e_tests.test_data import users
-from demoqa10_e2e_tests.test_data.users import FixtureUserWithoutRepr
+from tests import users
+from tests.users import FixtureUserWithoutRepr
 
 user_without_fixture_1 = users.FixtureUserWithoutRepr('Iba', 1, 'kmdkmkcmd', 'qazwsx')
 user_without_fixture_2 = users.FixtureUserWithoutRepr('Iba', 2, 'kmdkmkcmd', 'qazwsx')

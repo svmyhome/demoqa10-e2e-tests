@@ -1,6 +1,5 @@
 import allure
 import pytest
-from allure_commons.types import Severity
 
 
 @pytest.fixture(params=["Chrome", "Firefox", "Safari"])
@@ -37,6 +36,7 @@ def test_parametrize_fixture_with_indirect_2(my_browser):
 
 
 chrome_only = pytest.mark.parametrize("my_browser", ["Chrome"], indirect=True)
+
 
 @allure.feature('Fixture')
 @allure.story('Indirect')
