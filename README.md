@@ -20,6 +20,11 @@
 
 [Lesson 14: Telegram bot](https://school.qa.guru/pl/teach/control/lesson/view?id=322556453)    
 
+[Lesson 15: Fast develop](https://school.qa.guru/pl/teach/control/lesson/view?id=314614384)   
+
+[Lesson 16: Pytest](https://school.qa.guru/pl/teach/control/lesson/view?id=323933081) 
+
+[Lesson 17: Selenoid](https://school.qa.guru/pl/teach/control/lesson/view?id=324167375) 
 
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
@@ -96,8 +101,8 @@ Text File Content:
     "enableChart": True
   },
   "telegram": {
-    "token": "7156054513:AAHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM",
-    "chat": "-4149034406",
+    "token": "7126054513:AFHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM",
+    "chat": "-4149033206",
     "replyTo": ""
   }
 }
@@ -105,33 +110,75 @@ Text File Content:
 
 ![img.png](img.png)
 
+### Lesson 15: Fast develop
+https://devicon.dev/
 
-Done! Congratulations on your new bot. You will find it at t.me/test_qa_guru_14_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
+### Lesson 16: pytest
 
-Use this token to access the HTTP API:
-7156054513:AAHkRCVYAqZPhL7IXj7JVKPy2oax4leIxXM
+#### Аргументы запуска и марки
+--co не запускает, но собирает и отображает тесты которые будут запущены
+pytest --co
+
+-k фильтрует тесты по определенному слову, набору слов   
+pytest --co -k skip_1
+pytest --co -k "skip or 1"
+
+-m фильтрует по @pytest.mark.fast ... @pytest.mark... 
+Необходимо явно регистрировать pyproject.toml markers=["fast: Описание", "...."] 
+pytest --co -m slow
+pytest --co -m "slow or fast"
+
+--markers выводит все возможные марки
+
+--fixtures выводит все фикстуры
+
+--duration=10 печатает 10 самых долгих тестов
+pytest . --durations=10
+
+-v показывает расширенный лог
+
+-l -список всех переменных со значением
+pytest tests/simple/test_simple_fail.py -l
+
+--setup-plan покажет план запуска включая подготовку и завершение
+pytest test_simple.py --setup-plan
+
+addopts="-l -v --durations=10" вместо строки можно описать в pyproject.toml
+
+#### Пропуск файлов
+
+skip - удобно помечать тесты не готовой функциональности или тесты которые нет необходимости запускать в этом прогоне
+```
+@pytest.mark.skip 
+@pytest.mark.skip("TASK-1234 Тест нестабильный потому что время от времени не хватает таймаута")
+@pytest.mark.skip(reason="TASK-1234 Тест нестабильный потому что время от времени не хватает таймаута")
+```
+
+skipif - пропуск по условию. Лучше всего описывать в виде переменной принимает True/False
+```
+is_linux = True
+@pytest.mark.skipif(True)
+@pytest.mark.skipif(is_linux)
+@pytest.mark.skipif(is_linux, reason='Тест пропущен так как условие is_skip = True')
+```
+```
+pytestmark = pytest.mark.skip(reason="Когда нужно пропустить весь файл")
+```
+
+xfail - помечаются тесты которые вероятно упадут, помечаются как XFAIL/XPASS
+@pytest.mark.xfail(reason='Тест упал и выводит XFAIL') - если тест маленький можно повесить на сам тест, но правильнее внутри теста
+```
+Вот так лучше:
+```python
+assert 2 == 2
+try:
+    assert 2 == 2 
+except AssertionError:
+    pytest.xfail("TASK-1234 Test is xfail because is flaky")
+assert 3 == 3
+```
 
 
-{
-ok: true,
-result: [
-{
-update_id: 168035969,
-channel_post: {
-message_id: 2,
-sender_chat: {
-id: -1002084287772,
-title: "Autotest_messages",
-type: "channel"
-},
-chat: {
-id: -1002084287772,
-title: "Autotest_messages",
-type: "channel"
-},
-date: 1709494184,
-text: "ntcn"
-}
-}
-]
-}
+### Lesson 17: Selenoid
+https://aerokube.com/cm/latest/
+https://github.com/aerokube/selenoid-ui
