@@ -16,7 +16,7 @@ def test_fill_practice_form_with_revision(setup_browser):
     with allure.step("Open registrations form"):
         browser.open("/automation-practice-form")
 
-    if browser.element('.fc-cta-consent').should(be.visible):
+    if browser.element('.fc-cta-consent').wait_until(be.visible):
         with allure.step("Consent form"):
             browser.element('.fc-cta-consent').should(be.clickable).click()
 

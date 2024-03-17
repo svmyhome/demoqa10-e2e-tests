@@ -182,3 +182,19 @@ assert 3 == 3
 ### Lesson 17: Selenoid
 https://aerokube.com/cm/latest/
 https://github.com/aerokube/selenoid-ui
+
+```commandline
+./cm selenoid start --vnc
+./cm selenoid-ui start
+```
+порты запуска можно менять смотри документацию
+```commandline
+./cm selenoid start --port 4445
+```
+
+#### Добавление нового браузера
+1. Сходить на docker hub найти нужный образ и версию
+2. по пути /aerocube/selenoid/browser.json добавит его туда
+3. скачать этот образ руками docker pull
+4. рестартануть образ  docker restart image_name
+5. новый браузер етсь в UI

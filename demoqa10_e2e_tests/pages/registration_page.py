@@ -61,7 +61,7 @@ class RegistrationPage:
         ).click()
 
     def register(self, user: User):
-        if self.consent.should(be.visible):
+        if self.consent.wait_until(be.visible):
             with allure.step('Consent form'):
                 self.consent_form()
         with allure.step('Input first name'):

@@ -15,7 +15,7 @@ class LeftPanel:
     @allure.step('Open form {name_form}')
     def open(self, name_form):
         browser.open('/forms')
-        if self.consent.should(be.visible):
+        if self.consent.wait_until(be.visible):
             with allure.step('Consent form'):
                 self.consent_form()
         self.left_panel.click()
