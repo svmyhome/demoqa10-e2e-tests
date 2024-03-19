@@ -16,20 +16,18 @@ pydantic = "^2.6.2"
 pydantic-settings = "^2.2.1"
 
 
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.1.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 addopts = [
-    "--alluredir=allure-results",
-#    "-l",
-#    "-v",
-#    "--durations=10"
+    "--alluredir=allure-results"
 ]
-#addopts = "--alluredir=allure-results --clean-alluredir"
 
-#addopts="-l -v --durations=10"
 markers = [
     "fast: Маркируем тесты длящиеся менее пяти секунд",
     "slow: Тесты, которые длятся больше пяти секунд"
