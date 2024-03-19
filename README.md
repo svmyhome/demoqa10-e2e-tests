@@ -26,6 +26,8 @@
 
 [Lesson 17: Selenoid](https://school.qa.guru/pl/teach/control/lesson/view?id=324167375) 
 
+[Lesson 18: Venv, Poetry](https://school.qa.guru/pl/teach/control/lesson/view?id=324486634) 
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -198,3 +200,36 @@ https://github.com/aerokube/selenoid-ui
 3. скачать этот образ руками docker pull
 4. рестартануть образ  docker restart image_name
 5. новый браузер етсь в UI
+
+### Lesson 18: Poetry
+Чтобы настроить в текущуу папку окружение необходимо
+```commandline
+poetry config virtualenvs.in-project true
+
+poetry config virtualenvs.in-project
+```
+```commandline
+poetry --version
+
+poetry new my-package - новый проект
+
+poetry shell - активация виртуального окружения
+
+poetry init  - инициализация текущего проекта
+
+poetry install - установка всего проекта и зависимостей
+
+poetry add --dev pylint
+
+poetry update - обновление проекта
+
+poetry add requests pendulum - добавить пакет
+
+poetry remove pendulum -  удаление зависимости
+
+poetry show - 
+
+poetry show --tree - 
+
+poetry show pendulum` - указать установленные зависимости
+```
