@@ -9,6 +9,3 @@ def relative_from_root(path: str):
         .absolute()
         .__str__()
     )
-
-
-print(relative_from_root('list_users.json'))
