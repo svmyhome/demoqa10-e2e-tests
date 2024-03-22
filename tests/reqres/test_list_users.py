@@ -20,9 +20,9 @@ def test_list_users_get(base_url):
 
 @pytest.mark.positive
 def test_list_users_with_json_get(base_url):
-    file_path = relative_from_root('tests/schemas/list_users.json')
-    with open(file_path) as file:
-        file = json.load(file)
+    # file_path = relative_from_root('tests/schemas/list_users.json')
+    # with open(file_path) as file:
+    #     file = json.load(file)
 
     response: Response = requests.get(f'{base_url}users', params={"page": 2})
     print(response.text)
