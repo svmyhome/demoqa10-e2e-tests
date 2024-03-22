@@ -10,10 +10,7 @@ python = "^3.10.5"
 pytest = "^7.4.4"
 selene = {version = "^2.0.0rc5", allow-prereleases = true}
 requests = "^2.31.0"
-allure-pytest = "^2.13.2"
 python-dotenv = "^1.0.1"
-pydantic = "^2.6.2"
-pydantic-settings = "^2.2.1"
 jsonschema = "^4.21.1"
 
 
@@ -24,13 +21,8 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest.ini_options]
 addopts = [
     "--alluredir=allure-results",
-#    "-l",
-#    "-v",
-#    "--durations=10"
 ]
-#addopts = "--alluredir=allure-results --clean-alluredir"
 
-#addopts="-l -v --durations=10"
 markers = [
     "negative: This is negative tests",
     "positive: This is positive tests"
