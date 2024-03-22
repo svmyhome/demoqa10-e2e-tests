@@ -1,9 +1,10 @@
 from pathlib import Path
 
 
-def path(file_name):
-    return str(Path(__file__).parent.parent.parent.joinpath(f'resources/{file_name}'))
-
+# def path(file_name):
+#     return str(Path(__file__).parent.parent.parent.joinpath(f'{file_name}'))
+#
+# print(path('list_users.json'))
 
 def relative_from_root(path: str):
     import demoqa10_e2e_tests
@@ -15,3 +16,4 @@ def relative_from_root(path: str):
         .absolute()
         .__str__()
     )
+print(relative_from_root('list_users.json'))
