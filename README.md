@@ -26,6 +26,10 @@
 
 [Lesson 17: Selenoid](https://school.qa.guru/pl/teach/control/lesson/view?id=324167375) 
 
+[Lesson 18: Venv, Poetry](https://school.qa.guru/pl/teach/control/lesson/view?id=324486634) 
+
+[Lesson 19: Rest API](https://school.qa.guru/pl/teach/control/lesson/view?id=314614389) 
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -198,3 +202,64 @@ https://github.com/aerokube/selenoid-ui
 3. скачать этот образ руками docker pull
 4. рестартануть образ  docker restart image_name
 5. новый браузер етсь в UI
+
+### Lesson 18: Poetry
+Чтобы настроить в текущуу папку окружение необходимо
+```commandline
+poetry config virtualenvs.in-project true
+
+poetry config virtualenvs.in-project
+```
+```commandline
+poetry --version
+
+poetry new my-package - новый проект
+
+poetry shell - активация виртуального окружения
+
+poetry init  - инициализация текущего проекта
+
+poetry install - установка всего проекта и зависимостей
+
+poetry add --dev pylint
+
+poetry update - обновление проекта
+
+poetry add requests pendulum - добавить пакет
+
+poetry remove pendulum -  удаление зависимости
+
+poetry show - 
+
+poetry show --tree - 
+
+poetry show pendulum` - указать установленные зависимости
+```
+
+### Lesson 19: Rest API
+
+для post запроса можно использовать в виде body ```data=payload``` и ```json=payload```
+
+```data=payload``` используется когда структура передачи данных в body в формате Form Data,
+данные передаются в виде строки параметров и их значений,
+разделенных амперсандом (&).
+При использовании DATA данных, контент-type запроса должен быть установлен в 
+```
+application/x-www-form-urlencoded
+```
+data склеит их в строку со знаками = сама. Например:
+```
+username=johndoe&password=password123&email=johndoe@example.com
+data={"username":"johndoe", "password": "password123", "email": "johndoe@example.com"}
+```
+```json=payload``` используется когда структура передачи данных в body в формате json,
+При использовании JSON данных, контент-type запроса должен быть установлен в 
+```application/json```.
+Например:
+```json
+{
+  "username": "johndoe",
+  "password": "password123",
+  "email": "johndoe@example.com"
+}
+```
