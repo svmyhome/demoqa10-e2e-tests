@@ -1,21 +1,28 @@
 import json
-import requests
 import pytest
+from allure_commons._allure import step
 from requests import Response
 from jsonschema import validate
 from demoqa10_e2e_tests.utils.resource import relative_from_root
+from demoqa10_e2e_tests.utils.step_logging import reqres_get_step_logging
 from tests.schemas import reqres_schemas
 
+
+USERS_API = 'users'
+
+
+# @allure.story("List Users")
+# class TestListUsers:
 
 @pytest.mark.positive
 def test_list_users_get(base_url):
     schema = reqres_schemas.list_users
 
-    response: Response = requests.get(f'{base_url}users', params={"page": 2})
-    print(response.text)
+    response: Response = reqres_get_step_logging(url=f'{base_url}{USERS_API}', params={"page": 2})
 
-    assert response.status_code == 200
-    validate(response.json(), schema)
+    with step('Assert response'):
+        assert response.status_code == 200
+        validate(response.json(), schema)
 
 
 @pytest.mark.positive
@@ -24,19 +31,19 @@ def test_list_users_with_json_get(base_url):
     with open(file_path) as file:
         file = json.load(file)
 
-    response: Response = requests.get(f'{base_url}users', params={"page": 2})
-    print(response.text)
+    response: Response = reqres_get_step_logging(url=f'{base_url}{USERS_API}', params={"page": 2})
 
-    assert response.status_code == 200
-    validate(response.json(), file)
+    with step('Assert response'):
+        assert response.status_code == 200
+        validate(response.json(), file)
 
 
 @pytest.mark.negative
 def test_list_user_not_found_get(base_url):
     schema = reqres_schemas.user_not_found
 
-    response: Response = requests.get(f'{base_url}users/2322')
-    print(response.text)
+    response: Response = reqres_get_step_logging(url=f'{base_url}{USERS_API}/232')
 
-    assert response.status_code == 404
-    validate(response.json(), schema)
+    with step('Assert response'):
+        assert response.status_code == 404
+        validate(response.json(), schema)

@@ -96,9 +96,9 @@ def test_add_gift_card_to_cart():
         browser.open(WEB_URL)
         browser.driver.add_cookie({"name": "NOPCOMMERCE.AUTH", "value": auth_cookie})
         browser.open('https://demowebshop.tricentis.com/cart')
-        with step('Verify input value'):
+    with step('Verify input value'):
             browser.all('.qty-input').first.should(have.value('1'))
-        with step('Clear the cart'):
+    with step('Clear the cart'):
             browser.all('.qty-input').first.set_value(0)
             browser.element('.update-cart-button').click()
 
@@ -129,8 +129,13 @@ def test_add_desktop_to_cart():
         browser.open(WEB_URL)
         browser.driver.add_cookie({"name": "NOPCOMMERCE.AUTH", "value": auth_cookie})
         browser.open('https://demowebshop.tricentis.com/cart')
-        with step('Verify input value'):
-            browser.all('.qty-input').first.should(have.value('1'))
-        with step('Clear the cart'):
-            browser.all('.qty-input').first.set_value(0)
-            browser.element('.update-cart-button').click()
+
+    with step('Verify input value'):
+        browser.all('.qty-input').first.should(have.value('1'))
+    with step('Clear the cart'):
+        browser.all('.qty-input').first.set_value(0)
+        browser.element('.update-cart-button').click()
+
+
+
+
