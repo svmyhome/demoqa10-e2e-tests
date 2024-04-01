@@ -4,6 +4,7 @@ from requests import Response
 from selene import browser, have
 
 from demoqa10_e2e_tests.utils.step_logging import request_post_step_logging
+from demoqa10_e2e_tests.utils.support_methods import clear_cart
 
 LOGIN = "example1200@example.com"
 PASSWORD = "123456"
@@ -65,9 +66,9 @@ def test_add_laptop_to_cart():
         browser.open(f'{WEB_URL}cart')
     with step('Verify input value'):
         browser.all('.qty-input').first.should(have.value('1'))
-    with step('Clear the cart'):
-        browser.all('.qty-input').first.set_value(0)
-        browser.element('.update-cart-button').click()
+
+    clear_cart()
+
     # [name='itemquantity4124532']
     # with step("Verify successful authorize"):
     #     browser.element('.account').should(have.text('example1200@example.com'))
@@ -103,9 +104,8 @@ def test_add_gift_card_to_cart():
         browser.open(f'{WEB_URL}/cart')
     with step('Verify input value'):
         browser.all('.qty-input').first.should(have.value('1'))
-    with step('Clear the cart'):
-        browser.all('.qty-input').first.set_value(0)
-        browser.element('.update-cart-button').click()
+
+    clear_cart()
 
 
 def test_add_desktop_to_cart():
@@ -137,6 +137,5 @@ def test_add_desktop_to_cart():
 
     with step('Verify input value'):
         browser.all('.qty-input').first.should(have.value('1'))
-    with step('Clear the cart'):
-        browser.all('.qty-input').first.set_value(0)
-        browser.element('.update-cart-button').click()
+
+    clear_cart()
