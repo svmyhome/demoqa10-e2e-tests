@@ -4,7 +4,7 @@ from allure_commons._allure import step
 from requests import Response
 from jsonschema import validate
 from demoqa10_e2e_tests.utils.resource import relative_from_root
-from demoqa10_e2e_tests.utils.step_logging import reqres_get_step_logging
+from demoqa10_e2e_tests.utils.step_logging import request_get_step_logging
 from tests.schemas import reqres_schemas
 
 
@@ -18,7 +18,7 @@ USERS_API = 'users'
 def test_list_users_get(base_url):
     schema = reqres_schemas.list_users
 
-    response: Response = reqres_get_step_logging(url=f'{base_url}{USERS_API}', params={"page": 2})
+    response: Response = request_get_step_logging(url=f'{base_url}{USERS_API}', params={"page": 2})
 
     with step('Assert response'):
         assert response.status_code == 200
@@ -31,7 +31,7 @@ def test_list_users_with_json_get(base_url):
     with open(file_path) as file:
         file = json.load(file)
 
-    response: Response = reqres_get_step_logging(url=f'{base_url}{USERS_API}', params={"page": 2})
+    response: Response = request_get_step_logging(url=f'{base_url}{USERS_API}', params={"page": 2})
 
     with step('Assert response'):
         assert response.status_code == 200
@@ -42,7 +42,7 @@ def test_list_users_with_json_get(base_url):
 def test_list_user_not_found_get(base_url):
     schema = reqres_schemas.user_not_found
 
-    response: Response = reqres_get_step_logging(url=f'{base_url}{USERS_API}/232')
+    response: Response = request_get_step_logging(url=f'{base_url}{USERS_API}/232')
 
     with step('Assert response'):
         assert response.status_code == 404
