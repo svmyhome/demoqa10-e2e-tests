@@ -3,19 +3,10 @@ import os
 import allure
 import dotenv
 import pytest
-import requests
-from allure_commons._allure import step
-from requests import Response
 from selene import browser
 
 from demoqa10_e2e_tests.utils import support_methods
 from demoqa10_e2e_tests.utils.resource import relative_from_root
-
-
-@pytest.fixture(scope='session')
-def base_url():
-    dotenv.load_dotenv()
-    return os.getenv("BASE_URL")
 
 
 @pytest.fixture(scope='session', autouse=True)

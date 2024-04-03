@@ -1,11 +1,8 @@
 import os
 
 import allure
-from allure_commons._allure import step
-from selene import browser
 
 from demoqa10_e2e_tests.utils import data, support_methods
-from demoqa10_e2e_tests.utils.data import desktop_payload
 from demoqa10_e2e_tests.utils.step_logging import response_logging
 
 
