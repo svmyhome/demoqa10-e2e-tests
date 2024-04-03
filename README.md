@@ -28,7 +28,9 @@
 
 [Lesson 18: Venv, Poetry](https://school.qa.guru/pl/teach/control/lesson/view?id=324486634) 
 
-[Lesson 19: Rest API](https://school.qa.guru/pl/teach/control/lesson/view?id=314614389) 
+[Lesson 19: Rest API part 1](https://school.qa.guru/pl/teach/control/lesson/view?id=314614389) 
+
+[Lesson 20: Rest API part 2](https://school.qa.guru/pl/teach/control/lesson/view?id=314614390) 
 
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
@@ -236,7 +238,7 @@ poetry show --tree -
 poetry show pendulum` - указать установленные зависимости
 ```
 
-### Lesson 19: Rest API
+### Lesson 19: Rest API part 1
 
 для post запроса можно использовать в виде body ```data=payload``` и ```json=payload```
 
@@ -263,3 +265,29 @@ data={"username":"johndoe", "password": "password123", "email": "johndoe@example
   "email": "johndoe@example.com"
 }
 ```
+
+### Lesson 19: Rest API part 1
+
+
+-s чтобы при успешно прошедшем тесте print сработал
+
+allow_redirects=False отключает автоматический редирект 
+
+использование Cookies:
+вытащить из запроса:
+```python
+cookie = response.cookies.get("NOPCOMMERCE.AUTH")
+```
+ - браузер: прежде чем ее установить, нужно вначале открыть через browser.open(),
+так как selenium не понимает куда вставить cookie. Далее подставить cookie, а только потом открывать целевую страницу.
+```python
+browser.open(WEB_URL)
+browser.driver.add_cookie({"name": "NOPCOMMERCE.AUTH", "value": cookie})
+browser.open(WEB_URL)
+```
+ - api: использовать 
+```python
+requests.post(url=add_item, cookies={"NOPCOMMERCE.AUTH": auth_cookie})
+```
+
+

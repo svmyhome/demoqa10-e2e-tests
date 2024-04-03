@@ -12,7 +12,11 @@ selene = {version = "^2.0.0rc5", allow-prereleases = true}
 requests = "^2.31.0"
 allure-pytest = "^2.13.2"
 python-dotenv = "^1.0.1"
+pydantic = "^2.6.2"
+pydantic-settings = "^2.2.1"
 jsonschema = "^4.21.1"
+black = {extras = ["d"], version = "^24.3.0"}
+curlify = "^2.2.1"
 
 
 [build-system]
@@ -22,7 +26,17 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest.ini_options]
 addopts = [
     "--alluredir=allure-results",
+#    "-l",
+#    "-v",
+#    "--durations=10"
 ]
+#addopts = "--alluredir=allure-results --clean-alluredir"
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+#addopts="-l -v --durations=10"
 markers = [
     "negative: This is negative tests",
     "positive: This is positive tests"
