@@ -1,11 +1,14 @@
 # resources
-catalog = 'addproducttocart/catalog'
-details = 'addproducttocart/details'
+addproducttocart = 'addproducttocart/'
+catalog = 'catalog/'
+details = 'details'
 
 # items
 laptop = '31/1/1'
+laptop_name = '14.1-inch Laptop'
 
 cart = '2/1'
+cart_name = '$25 Virtual Gift Card'
 cart_payload = {
     "giftcard_2.RecipientName": "rwerewrwe@mail.ru",
     "giftcard_2.RecipientEmail": "rwerewrwe@mail.ru",
@@ -16,6 +19,7 @@ cart_payload = {
 }
 
 desktop = '72/1'
+desktop_name = 'Build your own cheap computer'
 desktop_payload = {
     "product_attribute_72_5_18": 53,
     "product_attribute_72_6_19": 54,

@@ -1,5 +1,6 @@
 import os
 
+import allure
 import dotenv
 import pytest
 import requests
@@ -18,23 +19,17 @@ def base_url():
 
 
 @pytest.fixture(scope='session', autouse=True)
-def api_setting():
+def set_browser():
     dotenv.load_dotenv(relative_from_root('.env.local'))
+    with allure.step('Browser config'):
+        browser.config.window_width = 1920
+        browser.config.window_height = 1080
 
-
-@pytest.fixture(scope='session')
-def set_configuration():
-    web_url = os.getenv('WEB_URL')
-
-    with step('Get authorize cookie'):
-        auth_cookie = support_methods.get_authorize_cookie()
-    with step('Browser configuration'):
-        browser.config.window_width = 1800
-        browser.open(web_url)
-        browser.driver.add_cookie({"name": "NOPCOMMERCE.AUTH", "value": auth_cookie})
-
-    browser.open(web_url)
+    with allure.step('Add authorization cookie'):
+        support_methods.get_authorize_cookie()
+        support_methods.set_auth_cookie()
 
     yield browser
 
-    browser.quit()
+    with allure.step('Close browser'):
+        browser.quit()

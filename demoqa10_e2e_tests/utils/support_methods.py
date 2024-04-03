@@ -1,8 +1,6 @@
 import os
 
 import dotenv
-import requests
-from allure_commons._allure import step
 from requests import Response
 from selene import browser
 
@@ -28,11 +26,11 @@ def get_authorize_cookie():
     return response.cookies.get("NOPCOMMERCE.AUTH")
 
 
-@staticmethod
-def clear_cart():
-    with step('Clear the cart'):
-        browser.all('.qty-input').first.set_value(0)
-        browser.element('.update-cart-button').click()
-
-
-print(get_authorize_cookie())
+def set_auth_cookie():
+    dotenv.load_dotenv(relative_from_root('.env.local'))
+    url_web = os.getenv('WEB_URL')
+    browser.open(url_web)
+    browser.driver.add_cookie(
+        {'name': "NOPCOMMERCE.AUTH", 'value': get_authorize_cookie()}
+    )
+    browser.open(url_web)
