@@ -5,7 +5,7 @@ from allure_commons._allure import step
 from requests import Response
 from selene import browser, have
 
-from demoqa10_e2e_tests.utils import support_methods
+from demoqa10_e2e_tests.utils import support_methods, data
 from demoqa10_e2e_tests.utils.step_logging import request_post_step_logging, response_logging
 from demoqa10_e2e_tests.utils.support_methods import clear_cart
 
@@ -58,7 +58,7 @@ def test_add_laptop_to_cart():
     # PASSWORD = os.getenv('PASSWORD')
     WEB_URL = os.getenv('WEB_URL')
     # API_URL = os.getenv('API_URL')
-    add_item = f"{WEB_URL}addproducttocart/catalog/31/1/1"
+    add_item = f"{WEB_URL}{data.catalog}/{data.laptop}"
     # payload = {"Email": LOGIN, "Password": PASSWORD}
     #
     # with step('Get cookies'):
@@ -85,7 +85,7 @@ def test_add_laptop_to_cart():
 
 def test_add_laptop_to_cart_1():
     WEB_URL = os.getenv('WEB_URL')
-    add_item = f"{WEB_URL}addproducttocart/catalog/31/1/1"
+    add_item = f"{WEB_URL}{data.catalog}/{data.laptop}"
 
     with step('Get authorize cookie'):
         auth_cookie = support_methods.get_authorize_cookie()
@@ -113,27 +113,24 @@ def test_add_gift_card_to_cart():
     PASSWORD = os.getenv('PASSWORD')
     WEB_URL = os.getenv('WEB_URL')
     API_URL = os.getenv('API_URL')
-    add_item = f"{WEB_URL}addproducttocart/details/2/1"
-    payload_1 = {
-        "giftcard_2.RecipientName": "rwerewrwe@mail.ru",
-        "giftcard_2.RecipientEmail": "rwerewrwe@mail.ru",
-        "giftcard_2.SenderName": "Exam+Ple",
-        "giftcard_2.SenderEmail": "example1200@example.com",
-        "giftcard_2.Message": "Fuck off",
-        "addtocart_2.EnteredQuantity": 1,
-    }
-    payload = {"Email": LOGIN, "Password": PASSWORD}
+    add_item = f"{WEB_URL}{data.details}/{data.cart}"
+    cart_payload = data.cart_payload
+    # payload = {"Email": LOGIN, "Password": PASSWORD}
+    #
+    # with step('Get cookies'):
+    #     response: Response = request_post_step_logging(
+    #         url=API_URL, data=payload, allow_redirects=False
+    #     )
+    #     auth_cookie = response.cookies.get("NOPCOMMERCE.AUTH")
 
-    with step('Get cookies'):
-        response: Response = request_post_step_logging(
-            url=API_URL, data=payload, allow_redirects=False
-        )
-        auth_cookie = response.cookies.get("NOPCOMMERCE.AUTH")
+    with step('Get authorize cookie'):
+        auth_cookie = support_methods.get_authorize_cookie()
+
     with step('Add item'):
         request_post_step_logging(
             url=add_item,
             cookies={"NOPCOMMERCE.AUTH": auth_cookie},
-            data=payload_1,
+            data=cart_payload,
         )
     with step('Set cookie to browser'):
         browser.open(WEB_URL)
@@ -151,27 +148,25 @@ def test_add_desktop_to_cart():
     PASSWORD = os.getenv('PASSWORD')
     WEB_URL = os.getenv('WEB_URL')
     API_URL = os.getenv('API_URL')
-    add_item = f"{WEB_URL}addproducttocart/details/72/1"
-    payload_1 = {
-        "product_attribute_72_5_18": 53,
-        "product_attribute_72_6_19": 54,
-        "product_attribute_72_3_20": 57,
-        "product_attribute_72_8_30": 93,
-        "addtocart_72.EnteredQuantity": 1,
-    }
-    payload = {"Email": LOGIN, "Password": PASSWORD}
+    add_item = f"{WEB_URL}{data.details}/{data.desktop}"
+    desktop_payload = data.desktop_payload
+    # payload = {"Email": LOGIN, "Password": PASSWORD}
 
-    with step('Open login page'):
-        response: Response = request_post_step_logging(
-            url=API_URL, data=payload, allow_redirects=False
-        )
-        print(response.status_code)
-        print(response.headers)
-        auth_cookie = response.cookies.get("NOPCOMMERCE.AUTH")
+    # with step('Open login page'):
+    #     response: Response = request_post_step_logging(
+    #         url=API_URL, data=payload, allow_redirects=False
+    #     )
+    #     print(response.status_code)
+    #     print(response.headers)
+    #     auth_cookie = response.cookies.get("NOPCOMMERCE.AUTH")
+    with step('Get authorize cookie'):
+        auth_cookie = support_methods.get_authorize_cookie()
+
+    with step('Add item'):
         request_post_step_logging(
             url=add_item,
             cookies={"NOPCOMMERCE.AUTH": auth_cookie},
-            data=payload_1,
+            data=desktop_payload,
         )
         browser.open(WEB_URL)
         browser.driver.add_cookie({"name": "NOPCOMMERCE.AUTH", "value": auth_cookie})
