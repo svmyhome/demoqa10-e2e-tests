@@ -8,7 +8,7 @@ from demoqa10_e2e_tests.utils.resource import relative_from_root
 from demoqa10_e2e_tests.utils.step_logging import response_logging
 
 
-@staticmethod
+
 def get_authorize_cookie():
     dotenv.load_dotenv(relative_from_root('.env.local'))
     url_api = os.getenv('API_URL')
