@@ -32,6 +32,8 @@
 
 [Lesson 20: Rest API part 2](https://school.qa.guru/pl/teach/control/lesson/view?id=314614390) 
 
+[Lesson 21: Mobile automation](https://school.qa.guru/pl/teach/control/lesson/view?id=325311308) 
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
