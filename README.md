@@ -293,3 +293,59 @@ requests.post(url=add_item, cookies={"NOPCOMMERCE.AUTH": auth_cookie})
 ```
 
 
+### Android
+
+Необходимо записать данные в .bashrc
+есть два варианта:
+1. echo export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.bashrc
+echo export PATH="$PATH:$ANDROID_HOME/emulator" >> ~/.bashrc
+после этого сделать  source ~/.bashrc  и  echo $JAVA_HOME
+
+2. Открыть nano ~/.bashrc и внести в конец файла
+export PATH=$PATH:/home/vladimir/.nvm/versions/node/v20.12.1
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export JAVA_HOME=/usr/lib/newjvm/java-17-oracle
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+после этого сделать  source ~/.bashrc  и  echo $JAVA_HOME
+
+Инструкция как настраивать и запускать
+https://ru.d-ws.biz/articles/andorid-9-adb-linux-usage.shtml
+
+
+Appium inspector
+Linux¶
+The Linux version is packaged as an .AppImage file. In order to open the file, its executable flag needs to be set first:
+
+chmod a+x Appium-Inspector-linux-<version>.AppImage
+Afterwards, the app can be opened through the command line:
+
+./Appium-Inspector-linux-<version>.AppImage
+
+КОманды
+
+adb devices
+List of devices attached
+emulator-5554 device
+
+Где emulator-5554 является так называемым udid устройства.
+
+С помощью udid можно получить другое полезное свойство устройства – avd_name:
+
+% adb -s emulator-5554 shell getprop ro.kernel.qemu.avd_name
+Pixel_4_XL_API_29
+или
+
+% adb -s emulator-5554 emu avd name
+Pixel_4_XL_API_29
+OK
+Другой способ узнать avd_name – это открыть «Virtual Device Manager» и в деталях об устройстве увидеть avd_name в значении поля AvdId:
+
+
+Зная avd_name, мы можем запускать эмулятор из терминала (а не только из «Virtual Device Manager»):
+
+% emulator -avd Pixel_4_XL_API_29
