@@ -6,7 +6,7 @@ import os
 
 
 @pytest.fixture(scope='function', autouse=True)
-def browser_management():
+def mobile_management():
     options = UiAutomator2Options().load_capabilities(
         {
             # Specify device and os_version for testing
@@ -27,8 +27,6 @@ def browser_management():
         }
     )
 
-    # Initialize the remote Webdriver using BrowserStack remote URL
-    # and options defined above
     browser.config.driver = webdriver.Remote("http://hub.browserstack.com/wd/hub", options=options)
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
