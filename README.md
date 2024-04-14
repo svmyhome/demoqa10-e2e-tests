@@ -313,8 +313,7 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 после этого сделать  source ~/.bashrc  и  echo $JAVA_HOME
 
-Инструкция как настраивать и запускать
-https://ru.d-ws.biz/articles/andorid-9-adb-linux-usage.shtml
+
 
 
 Appium inspector
@@ -349,3 +348,28 @@ OK
 Зная avd_name, мы можем запускать эмулятор из терминала (а не только из «Virtual Device Manager»):
 
 % emulator -avd Pixel_4_XL_API_29
+
+Инструкция как настраивать и запускать
+https://ru.d-ws.biz/articles/andorid-9-adb-linux-usage.shtml
+
+https://github.com/Genymobile/scrcpy
+scrcpy автоиатические подключается к устройству и выводит на экран картинку 
+для подключения если одно устройство просто набрать scrcpy
+
+пример заполнения инспектора
+{
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "/home/vladimir/Downloads/app-alpha-universal-release.apk",
+  "appium:appWaitActivity": "org.wikipedia.*",
+  "appium:udid": "DUM0220121000925"
+}
+{
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "/home/vladimir/Downloads/app-alpha-universal-release.apk",
+  "appium:appWaitActivity": "org.wikipedia.*",
+  "appium:deviceName": "VOG-L29"
+}
+
+через udid или devicename можно указать конкретное устройство если их несколько
