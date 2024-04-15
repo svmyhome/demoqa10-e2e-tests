@@ -293,6 +293,7 @@ requests.post(url=add_item, cookies={"NOPCOMMERCE.AUTH": auth_cookie})
 ```
 
 
+### 21, 23
 ### Android
 
 Необходимо записать данные в .bashrc
@@ -373,3 +374,9 @@ scrcpy автоиатические подключается к устройст
 }
 
 через udid или devicename можно указать конкретное устройство если их несколько
+
+если селектор виден но понему не находится то можно выгрузить все селекторы страницы и поискать в них, возможно реально другое название
+```python
+        page_source = browser.driver.page_source
+        print(page_source)
+```
