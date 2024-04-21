@@ -1,42 +1,28 @@
 import allure
+import pytest
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
 
-def test_search_appium():
+@pytest.mark.parametrize('input_text', ['Appium', 'Python'])
+def test_search_text(input_text):
 
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
 
     with allure.step('Type the text'):
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type(
-            "Appium"
+            input_text
         )
     with allure.step('Assert text found'):
         results = browser.all(
             (AppiumBy.ID, "org.wikipedia.alpha:id/page_list_item_title")
         )
         results.should(have.size_greater_than(0))
-        results.first.should(have.text('Appium'))
+        results.first.should(have.text(input_text))
 
 
-def test_search_python():
-
-    with allure.step('Click to search'):
-        browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
-    with allure.step('Type the text'):
-        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type(
-            "Python"
-        )
-    with allure.step('Assert text found'):
-        results = browser.all(
-            (AppiumBy.ID, "org.wikipedia.alpha:id/page_list_item_title")
-        )
-        results.should(have.size_greater_than(0))
-        results.first.should(have.text('Python'))
-
-
-def test_text_not_found_1():
+def test_text_not_found_quantity_search():
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     with allure.step('Type the text'):
@@ -48,7 +34,7 @@ def test_text_not_found_1():
         results.should(have.size(0))
 
 
-def test_text_not_found_2():
+def test_text_not_found_text_search():
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     with allure.step('Type the text'):
@@ -63,7 +49,7 @@ def test_text_not_found_2():
         results.should(have.text('No results found'))
 
 
-def test_text_not_found_3():
+def test_text_not_found_class_search():
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     with allure.step('Type the text'):

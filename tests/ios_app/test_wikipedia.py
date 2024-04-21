@@ -1,19 +1,16 @@
-from appium import webdriver
-from appium.options.ios import XCUITestOptions
+import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
 
 
-def test_ios():
+def test_search_text():
 
-    text_button = browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Button"))
-    text_button.click()
+    with allure.step('Click to search'):
+        browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Button")).click()
 
-    text_input = browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Input"))
-    text_input.type("Appium")
+    with allure.step('Type the text'):
+        browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Input")).type("Appium")
 
-    text_output = browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Input"))
-    text_output.should(have.text("Appium"))
+    with allure.step('Assert text found'):
+        results = browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Input"))
+        results.should(have.text("Appium"))
