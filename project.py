@@ -2,11 +2,13 @@ from typing import Literal
 
 from pydantic_settings import BaseSettings
 
+import config
+
 
 class Settings(BaseSettings):
     platform_name: Literal['android', 'ios', 'local'] = 'android'
-    app_path: str = "bs://sample.app"
-    base_url: str = "http://hub.browserstack.com/wd/hub"
+    app_path: str = config.app_path
+    base_url: str = config.base_url
     time_out: float = 10.0
     # android
     platform_version: str = "9.0"
