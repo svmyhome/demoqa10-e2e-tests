@@ -3,7 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
 
-def test_search_text():
+def test_search_text_ios():
 
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Button")).click()
