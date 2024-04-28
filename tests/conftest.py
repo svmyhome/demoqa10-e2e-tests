@@ -5,7 +5,6 @@ from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
 from selene import browser, support
-import os
 import config
 import project
 from demoqa10_e2e_tests.utils.allure_attach import (
@@ -17,15 +16,15 @@ from demoqa10_e2e_tests.utils.allure_attach import (
 
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management():
-    if project.config.platform_name == 'android':
+    if project.settings.platform_name == 'android':
         options = UiAutomator2Options().load_capabilities(
             {
-                "platformName": project.config.platform_name,
-                "platformVersion": project.config.platform_version,
+                "platformName": project.settings.platform_name,
+                "platformVersion": project.settings.platform_version,
                 "deviceName": "Google Pixel 3",
-                "app": project.config.app_path,
+                "app": project.settings.app_path,
                 'bstack:options': {
-                    "projectName": project.config.android_project_name,
+                    "projectName": project.settings.android_project_name,
                     "buildName": "browserstack-build-1",
                     "sessionName": "BStack first_test",
                     "userName": config.user_name,
@@ -33,7 +32,7 @@ def mobile_management():
                 },
             }
         )
-    elif project.config.platform_name == 'ios':
+    elif project.settings.platform_name == 'ios':
         options = XCUITestOptions().load_capabilities(
             {
                 "app": "bs://sample.app",
@@ -43,7 +42,7 @@ def mobile_management():
                 "bstack:options": {
                     "userName": config.user_name,
                     "accessKey": config.access_key,
-                    "projectName": project.config.ios_project_name,
+                    "projectName": project.settings.ios_project_name,
                     "buildName": "browserstack-build-1",
                     "sessionName": "BStack first_test",
                 },
@@ -53,7 +52,7 @@ def mobile_management():
         browser.config.driver = webdriver.Remote(
             "http://hub.browserstack.com/wd/hub", options=options
         )
-    browser.config.timeout = project.config.time_out
+    browser.config.timeout = project.settings.time_out
     browser.config._wait_decorator = support._logging.wait_with(
         context=allure_commons._allure.StepContext
     )

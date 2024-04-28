@@ -17,4 +17,4 @@ class Settings(BaseSettings):
     ios_project_name: str = "ios test"
 
 
-config = Settings()
+settings = Settings()
