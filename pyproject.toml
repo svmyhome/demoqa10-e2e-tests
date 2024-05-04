@@ -18,6 +18,7 @@ jsonschema = "^4.21.1"
 black = {extras = ["d"], version = "^24.3.0"}
 curlify = "^2.2.1"
 appium-python-client = "^4.0.0"
+pathlib = "^1.0.1"
 
 
 [build-system]

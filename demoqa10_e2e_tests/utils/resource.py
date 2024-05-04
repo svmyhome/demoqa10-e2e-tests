@@ -1,5 +1,7 @@
-import demoqa10_e2e_tests
 from pathlib import Path
+
+import demoqa10_e2e_tests
+
 
 
 def relative_from_root(path: str):
