@@ -20,13 +20,13 @@ def mobile_management():
         options = UiAutomator2Options().load_capabilities(
             {
                 "platformName": project.settings.platform_name,
-                "platformVersion": project.settings.platform_version,
-                "deviceName": "Google Pixel 3",
+                "platformVersion": project.settings.android_platform_version,
+                "deviceName": project.settings.android_device_name,
                 "app": project.settings.app_path,
                 'bstack:options': {
                     "projectName": project.settings.android_project_name,
                     "buildName": "browserstack-build-1",
-                    "sessionName": "BStack first_test",
+                    "sessionName": "Android tests",
                     "userName": config.user_name,
                     "accessKey": config.access_key,
                 },
@@ -35,22 +35,22 @@ def mobile_management():
     elif project.settings.platform_name == 'ios':
         options = XCUITestOptions().load_capabilities(
             {
-                "app": "bs://sample.app",
-                "deviceName": "iPhone 11 Pro",
-                "platformName": "ios",
-                "platformVersion": "13",
+                "app": project.settings.app_path,
+                "deviceName": project.settings.ios_device_name,
+                "platformName": project.settings.platform_name,
+                "platformVersion": project.settings.ios_platform_version,
                 "bstack:options": {
                     "userName": config.user_name,
                     "accessKey": config.access_key,
                     "projectName": project.settings.ios_project_name,
                     "buildName": "browserstack-build-1",
-                    "sessionName": "BStack first_test",
+                    "sessionName": "IOS tests",
                 },
             }
         )
     with allure.step("Init app session"):
         browser.config.driver = webdriver.Remote(
-            "http://hub.browserstack.com/wd/hub", options=options
+            project.settings.base_url, options=options
         )
     browser.config.timeout = project.settings.time_out
     browser.config._wait_decorator = support._logging.wait_with(
