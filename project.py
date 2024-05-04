@@ -12,8 +12,8 @@ class Settings(BaseSettings):
     time_out: float = config.time_out
     # android
     android_project_name: str = "Android wikipedia test"
-    android_device_name: str = config.android_device_name#"Google Pixel 4"#"Google Pixel 3"
-    android_platform_version: str = config.android_platform_version#"9.0"
+    android_device_name: str = config.android_device_name
+    android_platform_version: str = config.android_platform_version
     # ios
     ios_project_name: str = "IOS wikipedia test"
     ios_device_name: str = config.ios_device_name
