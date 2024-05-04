@@ -32,6 +32,8 @@
 
 [Lesson 20: Rest API part 2](https://school.qa.guru/pl/teach/control/lesson/view?id=314614390) 
 
+[Lesson 21: Mobile automation](https://school.qa.guru/pl/teach/control/lesson/view?id=325311308) 
+
 ### Hot keys pyCharm
 Alt + shift + E в режиме дебага выполнить одну строку
 
@@ -291,3 +293,90 @@ requests.post(url=add_item, cookies={"NOPCOMMERCE.AUTH": auth_cookie})
 ```
 
 
+### 21, 23
+### Android
+
+Необходимо записать данные в .bashrc
+есть два варианта:
+1. echo export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.bashrc
+echo export PATH="$PATH:$ANDROID_HOME/emulator" >> ~/.bashrc
+после этого сделать  source ~/.bashrc  и  echo $JAVA_HOME
+
+2. Открыть nano ~/.bashrc и внести в конец файла
+export PATH=$PATH:/home/vladimir/.nvm/versions/node/v20.12.1
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export JAVA_HOME=/usr/lib/newjvm/java-17-oracle
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+после этого сделать  source ~/.bashrc  и  echo $JAVA_HOME
+
+
+
+
+Appium inspector
+Linux¶
+The Linux version is packaged as an .AppImage file. In order to open the file, its executable flag needs to be set first:
+
+chmod a+x Appium-Inspector-linux-<version>.AppImage
+Afterwards, the app can be opened through the command line:
+
+./Appium-Inspector-linux-<version>.AppImage
+
+КОманды
+
+adb devices
+List of devices attached
+emulator-5554 device
+
+Где emulator-5554 является так называемым udid устройства.
+
+С помощью udid можно получить другое полезное свойство устройства – avd_name:
+
+% adb -s emulator-5554 shell getprop ro.kernel.qemu.avd_name
+Pixel_4_XL_API_29
+или
+
+% adb -s emulator-5554 emu avd name
+Pixel_4_XL_API_29
+OK
+Другой способ узнать avd_name – это открыть «Virtual Device Manager» и в деталях об устройстве увидеть avd_name в значении поля AvdId:
+
+
+Зная avd_name, мы можем запускать эмулятор из терминала (а не только из «Virtual Device Manager»):
+
+% emulator -avd Pixel_4_XL_API_29
+
+Инструкция как настраивать и запускать
+https://ru.d-ws.biz/articles/andorid-9-adb-linux-usage.shtml
+
+https://github.com/Genymobile/scrcpy
+scrcpy автоиатические подключается к устройству и выводит на экран картинку 
+для подключения если одно устройство просто набрать scrcpy
+
+пример заполнения инспектора
+{
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "/home/vladimir/Downloads/app-alpha-universal-release.apk",
+  "appium:appWaitActivity": "org.wikipedia.*",
+  "appium:udid": "DUM0220121000925"
+}
+{
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "/home/vladimir/Downloads/app-alpha-universal-release.apk",
+  "appium:appWaitActivity": "org.wikipedia.*",
+  "appium:deviceName": "VOG-L29"
+}
+
+через udid или devicename можно указать конкретное устройство если их несколько
+
+если селектор виден но понему не находится то можно выгрузить все селекторы страницы и поискать в них, возможно реально другое название
+```python
+        page_source = browser.driver.page_source
+        print(page_source)
+```
