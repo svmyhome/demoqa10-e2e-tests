@@ -5,6 +5,7 @@ from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
 from selene import browser, support
+
 import config
 import project
 from demoqa10_e2e_tests.utils.allure_attach import (
