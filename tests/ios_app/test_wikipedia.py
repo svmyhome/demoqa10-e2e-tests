@@ -29,4 +29,4 @@ def test_open_article_ios():
         results.should(have.text("Java"))
 
     with allure.step('Click to article'):
-        results.should(have.text("Java")).click()
+        results.click()

@@ -39,7 +39,7 @@ def test_open_article():
         results.first.should(have.text(input_text))
 
     with allure.step('Click to article'):
-        results.first.should(have.text(input_text)).click()
+        results.first.click()
 
 
 def test_text_not_found_quantity_search():
