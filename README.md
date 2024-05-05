@@ -317,38 +317,36 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 
 
-Appium inspector
+### Appium inspector
 Linux¶
 The Linux version is packaged as an .AppImage file. In order to open the file, its executable flag needs to be set first:
 
 chmod a+x Appium-Inspector-linux-<version>.AppImage
 Afterwards, the app can be opened through the command line:
+```appium``` - запуск апиум сервера
+```./Appium-Inspector-linux-<version>.AppImage```
 
-./Appium-Inspector-linux-<version>.AppImage
+### Commands
 
-КОманды
-
-adb devices
-List of devices attached
+```adb devices``` - List of devices attached
 emulator-5554 device
 
 Где emulator-5554 является так называемым udid устройства.
 
 С помощью udid можно получить другое полезное свойство устройства – avd_name:
 
-% adb -s emulator-5554 shell getprop ro.kernel.qemu.avd_name
-Pixel_4_XL_API_29
+```% adb -s emulator-5554 shell getprop ro.kernel.qemu.avd_name Pixel_4_XL_API_29``` 
 или
 
-% adb -s emulator-5554 emu avd name
-Pixel_4_XL_API_29
+```% adb -s emulator-5554 emu avd name Pixel_4_XL_API_29```
+
 OK
 Другой способ узнать avd_name – это открыть «Virtual Device Manager» и в деталях об устройстве увидеть avd_name в значении поля AvdId:
 
 
 Зная avd_name, мы можем запускать эмулятор из терминала (а не только из «Virtual Device Manager»):
 
-% emulator -avd Pixel_4_XL_API_29
+```% emulator -avd Pixel_4_XL_API_29```
 
 Инструкция как настраивать и запускать
 https://ru.d-ws.biz/articles/andorid-9-adb-linux-usage.shtml
