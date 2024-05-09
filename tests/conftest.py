@@ -21,7 +21,8 @@ def mobile_management():
         options = UiAutomator2Options()
 
         options.set_capability("platformName", project.settings.platform_name)
-        options.set_capability('udid', project.settings.udid)
+        if not config.runs_on_bstack:
+            options.set_capability('udid', project.settings.udid)
         if project.settings.android_device_name:
             options.set_capability("deviceName", project.settings.android_device_name)
 

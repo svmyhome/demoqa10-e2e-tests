@@ -6,7 +6,7 @@ import config
 
 
 class Settings(BaseSettings):
-    platform_name: Literal['android', 'ios', 'local'] = 'android'
+    platform_name: Literal['android', 'ios', 'local'] = config.platform_name
     app_path: str = config.app_path
     base_url: str = config.base_url
     time_out: float = config.time_out
