@@ -7,6 +7,9 @@ from selene import browser, have
 @pytest.mark.parametrize('input_text', ['Appium', 'Python'])
 def test_search_text(input_text):
 
+    with allure.step('Welcome screen'):
+        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
 
@@ -24,6 +27,10 @@ def test_search_text(input_text):
 
 def test_open_article():
     input_text = 'Java'
+
+    with allure.step('Welcome screen'):
+        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
 
@@ -43,6 +50,9 @@ def test_open_article():
 
 
 def test_text_not_found_quantity_search():
+    with allure.step('Welcome screen'):
+        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     with allure.step('Type the text'):
@@ -55,6 +65,9 @@ def test_text_not_found_quantity_search():
 
 
 def test_text_not_found_text_search():
+    with allure.step('Welcome screen'):
+        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     with allure.step('Type the text'):
@@ -70,6 +83,9 @@ def test_text_not_found_text_search():
 
 
 def test_text_not_found_class_search():
+    with allure.step('Welcome screen'):
+        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+
     with allure.step('Click to search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     with allure.step('Type the text'):

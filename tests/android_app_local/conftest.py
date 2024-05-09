@@ -19,9 +19,6 @@ def browser_management():
 
     browser.config.driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
-    # [Appium] 	http://127.0.0.1:4723/ (only accessible from the same host)
-    # [Appium] 	http://192.168.31.8:4723/
-    # [Appium] 	http://172.20.0.1:4723/
 
     yield
 
