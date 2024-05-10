@@ -56,22 +56,7 @@ def mobile_management():
                     "accessKey": config.access_key,
                 },
             )
-    elif project.settings.platform_name == 'ios':
-        options = XCUITestOptions().load_capabilities(
-            {
-                "app": project.settings.app_path,
-                "deviceName": project.settings.ios_device_name,
-                "platformName": project.settings.platform_name,
-                "platformVersion": project.settings.ios_platform_version,
-                "bstack:options": {
-                    "userName": config.user_name,
-                    "accessKey": config.access_key,
-                    "projectName": project.settings.ios_project_name,
-                    "buildName": "browserstack-build-1",
-                    "sessionName": "IOS tests",
-                },
-            }
-        )
+
     with allure.step("Init app session"):
         browser.config.driver = webdriver.Remote(
             project.settings.base_url, options=options

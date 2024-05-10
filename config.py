@@ -19,11 +19,9 @@ appWaitActivity = os.getenv("appium:appWaitActivity", "org.wikipedia.*")
 
 
 # The choice of test environment
-runs_on_bstack = (app_path.startswith("bs://") or platform_name.startswith("ios"))
+runs_on_bstack = app_path.startswith("bs://")
 if runs_on_bstack:
     base_url = "http://hub.browserstack.com/wd/hub"
-if platform_name.startswith("ios"):
-    app_path = "bs://sample.app"
 
 # Read android configuration
 dotenv.load_dotenv(resource.relative_from_root('.env.android'))
@@ -31,9 +29,5 @@ android_device_name = os.getenv('android_device_name')
 android_platform_version = os.getenv('android_platform_version')
 udid = os.getenv('udid')
 
-# Read ios configuration
-dotenv.load_dotenv(resource.relative_from_root('.env.ios'))
-ios_device_name = os.getenv('ios_device_name')
-ios_platform_version = os.getenv('ios_platform_version')
 
 
