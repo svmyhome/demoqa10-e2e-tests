@@ -3,6 +3,7 @@ from typing import Literal
 from pydantic_settings import BaseSettings
 
 import config
+from demoqa10_e2e_tests.utils import resource
 
 
 class Settings(BaseSettings):
@@ -23,4 +24,4 @@ class Settings(BaseSettings):
     appWaitActivity: str = config.appWaitActivity
 
 
-settings = Settings()
+settings = Settings(_env_file=resource.relative_from_root(f'.env.{Settings().platform_name}'))
