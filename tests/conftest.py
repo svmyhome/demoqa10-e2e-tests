@@ -21,8 +21,10 @@ def mobile_management():
         options = UiAutomator2Options()
 
         options.set_capability("platformName", project.settings.platform_name)
-        if not config.runs_on_bstack:
+
+        if project.settings.udid:
             options.set_capability('udid', project.settings.udid)
+
         if project.settings.android_device_name:
             options.set_capability("deviceName", project.settings.android_device_name)
 
@@ -39,12 +41,12 @@ def mobile_management():
             "app",
             (
                 project.settings.app_path
-                if (project.settings.app_path.startswith('/') or config.runs_on_bstack)
+                if (project.settings.app_path.startswith('/') or config.context == "bstack")
                 else relative_from_root(project.settings.app_path)
             ),
         )
 
-        if config.runs_on_bstack:
+        if config.context == "bstack":
 
             options.set_capability(
                 'bstack:options',
@@ -76,5 +78,5 @@ def mobile_management():
 
     with allure.step(f"Tear down session {session_id}"):
         browser.quit()
-    if config.runs_on_bstack:
+    if config.context == "bstack":
         attach_video(session_id)

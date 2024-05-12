@@ -7,7 +7,8 @@ from demoqa10_e2e_tests.utils import resource
 
 
 class Settings(BaseSettings):
-    platform_name: Literal['android', 'local'] = config.platform_name
+    platform_name: Literal['android', 'ios'] = config.platform_name
+    context: Literal['local_emulator', 'local_real', 'bstack'] = config.context
     app_path: str = config.app_path
     base_url: str = config.base_url
     time_out: float = config.time_out

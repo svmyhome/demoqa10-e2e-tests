@@ -10,24 +10,39 @@ user_name = os.getenv('userName')
 access_key = os.getenv('accessKey')
 
 # Read basic configuration
-dotenv.load_dotenv(resource.relative_from_root('.env.config'))
-platform_name = os.getenv('platform_name')
-app_path = os.getenv('appPath')
-base_url = os.getenv('baseUrl')
-time_out = os.getenv('time_out')
+context = os.getenv('context', 'local_real')
 appWaitActivity = os.getenv("appium:appWaitActivity", "org.wikipedia.*")
 
+if context == 'local_real':
+    dotenv.load_dotenv(resource.relative_from_root('.env.local_real'))
+    udid = os.getenv('udid')
+    platform_name = os.getenv('platform_name')
+    android_device_name = os.getenv('android_device_name')
+    android_platform_version = os.getenv('android_platform_version')
+    app_path = os.getenv('appPath')
+    base_url = os.getenv('baseUrl')
+    time_out = os.getenv('time_out')
 
-# The choice of test environment
-runs_on_bstack = app_path.startswith("bs://")
-if runs_on_bstack:
-    base_url = "http://hub.browserstack.com/wd/hub"
+if context == 'local_emulator':
+    dotenv.load_dotenv(resource.relative_from_root('.env.local_emulator'))
+    udid = os.getenv('udid')
+    platform_name = os.getenv('platform_name')
+    android_device_name = os.getenv('android_device_name')
+    android_platform_version = os.getenv('android_platform_version')
+    app_path = os.getenv('appPath')
+    base_url = os.getenv('baseUrl')
+    time_out = os.getenv('time_out')
 
-# Read android configuration
-dotenv.load_dotenv(resource.relative_from_root('.env.android'))
-android_device_name = os.getenv('android_device_name')
-android_platform_version = os.getenv('android_platform_version')
-udid = os.getenv('udid')
+if context == 'bstack':
+    dotenv.load_dotenv(resource.relative_from_root('.env.bstack'))
+    udid = os.getenv('udid')
+    platform_name = os.getenv('platform_name')
+    android_device_name = os.getenv('android_device_name')
+    android_platform_version = os.getenv('android_platform_version')
+    app_path = os.getenv('appPath')
+    base_url = os.getenv('baseUrl')
+    time_out = os.getenv('time_out')
+
 
 
 
