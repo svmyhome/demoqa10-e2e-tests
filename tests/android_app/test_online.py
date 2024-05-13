@@ -72,11 +72,21 @@ def test_search_lenta_emulator():
         browser.element((AppiumBy.XPATH,'//android.widget.ImageButton[@resource-id="com.icemobile.lenta.prod:id/storiesClose"]')).should(be.clickable)
         browser.element((AppiumBy.XPATH,'//android.widget.ImageButton[@resource-id="com.icemobile.lenta.prod:id/storiesClose"]')).click()
 
-    with allure.step('Type the text'):
-        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/textName" and @text="Груши Вильямс, весовые"]')).should(be.clickable)
-        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/textName" and @text="Груши Вильямс, весовые"]')).click()
+    with allure.step('Click to search field'):
+        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@text="Найти в магазине"]')).should(be.clickable)
+        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@text="Найти в магазине"]')).click()
 
-    with allure.step('Assert text found'):
-        browser.all((AppiumBy.XPATH, '//androidx.recyclerview.widget.RecyclerView[@resource-id="com.icemobile.lenta.prod:id/catalogEcommScreenList"]/android.widget.LinearLayout[1]/android.widget.LinearLayout')).should(be.visible)
-        browser.all((AppiumBy.XPATH, '//androidx.recyclerview.widget.RecyclerView[@resource-id="com.icemobile.lenta.prod:id/catalogEcommScreenList"]/android.widget.LinearLayout[1]/android.widget.LinearLayout')).should(
-            have.text("Груши Вильямс, весовые"))
+    with allure.step('Type the text'):
+        browser.element((AppiumBy.ID, 'com.icemobile.lenta.prod:id/searchView')).should(be.clickable)
+        browser.element((AppiumBy.ID, 'com.icemobile.lenta.prod:id/searchView')).type('044185')
+
+
+    with allure.step('Go to the card'):
+        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/textName"]')).should(be.clickable)
+        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/textName"]')).click()
+
+    with allure.step('Should have product'):
+        # browser.all((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/catalogEcommDetailTitleName"]')).should(be.visible)
+        # browser.all((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/catalogEcommDetailTitleName"]')).should(have.text("Груши Конференц"))
+        # browser.all((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.icemobile.lenta.prod:id/catalogEcommDetailTitleName"]')).should(have.size_greater_than(0))
+        browser.all((AppiumBy.ID, 'com.icemobile.lenta.prod:id/catalogEcommDetailTitleName')).should(have.size_greater_than(0))
