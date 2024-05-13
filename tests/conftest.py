@@ -34,8 +34,8 @@ def mobile_management():
                 project.settings.android_platform_version,
             )
 
-        if project.settings.appWaitActivity:
-            options.set_capability("appWaitActivity", project.settings.appWaitActivity)
+        # if project.settings.appWaitActivity:
+        #     options.set_capability("appWaitActivity", project.settings.appWaitActivity)
 
         options.set_capability(
             "app",
