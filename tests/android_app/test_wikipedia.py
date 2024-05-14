@@ -2,6 +2,8 @@ import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
 
+from demoqa10_e2e_tests.models.onbording import onbording
+
 
 def test_skip_search_text():
     input_text = 'Appium'
@@ -27,38 +29,21 @@ def test_skip_search_text():
 
 def test_onboarding_search_text():
     with allure.step('Welcome screen'):
-        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
-            have.text('The Free Encyclopedia\n…in over 300 languages')
-        )
-        browser.element(
-            (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_forward_button")
-        ).click()
+        onbording.should_have_text('The Free Encyclopedia\n…in over 300 languages')
+        onbording.click_onboarding_forward_button()
 
     with allure.step('New ways to explore'):
-        browser.element((
-            AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
-            have.text('New ways to explore'))
-        browser.element(
-            (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_forward_button")
-        ).click()
+        onbording.should_have_text('New ways to explore')
+        onbording.click_onboarding_forward_button()
 
     with allure.step('Reading list with sync'):
-        browser.element((
-            AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
-            have.text('Reading lists with sync'))
-        browser.element(
-            (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_forward_button")
-        ).click()
+        onbording.should_have_text('Reading lists with sync')
+        onbording.click_onboarding_forward_button()
 
     with allure.step('Data & Privacy'):
-        browser.element((
-            AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
-            have.text('Data & Privacy'))
-        browser.element(
-            (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_done_button")
-        ).click()
+        onbording.should_have_text('Data & Privacy')
+        onbording.click_onboarding_done_button()
 
     with allure.step('Click to search'):
-        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/view_announcement_text")).should(
-            have.text('Customize your Explore feed')
-        )
+        onbording.should_have_success_onbording('Customize your Explore feed')
+
